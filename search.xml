@@ -58,11 +58,7 @@
 <hr>
 <h3 id="字体样式"><a href="#字体样式" class="headerlink" title="字体样式"></a>字体样式</h3><p><code>**加黑**</code><br><strong>加黑</strong></p>
 <p><code>*强调(斜体)*</code><br><em>强调(斜体)</em></p>
-<p><code>++下划线++</code><br>++下划线++</p>
 <p><code>~~删除线~~</code><br><del>删除线</del></p>
-<p><code>==高亮==</code><br>==高亮==</p>
-<p><code>字^上标^</code><br>字^上标^</p>
-<p><code>字~下标~</code><br>字~下标~</p>
 <hr>
 <h3 id="图片与超链接"><a href="#图片与超链接" class="headerlink" title="图片与超链接"></a>图片与超链接</h3><p><strong>超链接</strong><br><code>[高新兴移动开发小组](https://gosuncnstudio.github.io/)</code><br><a href="https://gosuncnstudio.github.io/">高新兴移动开发小组</a></p>
 <p><strong>网络图片调用</strong><br><code>![gosuncn](https://gosuncnstudio.github.io/img/avatar.png)</code><br><img src="https://gosuncnstudio.github.io/img/avatar.png" alt="gosuncn"></p>

@@ -11,13 +11,24 @@
 <p>3.点击setting -&gt; sshkey -&gt; new ssh key（右上）<br>在页面随便填入一个title，然后key里面，把刚才复制的那个文本信息拷贝进去<br><img src="/img/hexo使用教程/3.png" alt="3.png"><br>点击add ssh key ，没有提示错误，就ok了.<br>4.本地用户信息配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git config -l  查看当前配置信息</span><br><span class="line">credential.helper=osxkeychain</span><br><span class="line">user.name=adlerkismet</span><br><span class="line">user.email=sckismet07@gmail.com</span><br><span class="line">filter.lfs.clean=git-lfs clean -- %f</span><br><span class="line">filter.lfs.smudge=git-lfs smudge -- %f</span><br><span class="line">filter.lfs.process=git-lfs filter-process</span><br><span class="line">filter.lfs.required=true</span><br></pre></td></tr></table></figure></p>
 <p>5.全局用户信息配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name J_mialbox</span><br><span class="line">git config --global user.email J_mialbox@163.com</span><br><span class="line"></span><br><span class="line">//信息保存位置:chengaojian(用户名)</span><br><span class="line">/Users/chengaojian/.gitconfig</span><br><span class="line"></span><br><span class="line">打开gitconfig信息如下:</span><br><span class="line">[user]</span><br><span class="line">    name = J_mialbox</span><br><span class="line">    email = J_mialbox@163.com</span><br><span class="line"></span><br><span class="line">git log  --查看历史</span><br></pre></td></tr></table></figure></p>
 <hr>
-<h3 id="下载安装node-js"><a href="#下载安装node-js" class="headerlink" title="下载安装node.js"></a>下载安装node.js</h3><p>1.<a href="https://link.jianshu.com/?t=https://nodejs.org/en/" target="_blank" rel="noopener">node.js下载地址</a><br>2、安装步骤：一路默认就行（安装路径根据自己需要更改）</p>
+<h3 id="下载安装node-js"><a href="#下载安装node-js" class="headerlink" title="下载安装node.js"></a>下载安装node.js</h3><p>1.<a href="https://link.jianshu.com/?t=https://nodejs.org/en/" target="_blank" rel="noopener">node.js下载地址</a><br>2.安装步骤：一路默认就行（安装路径根据自己需要更改）<br>3.windows平台下可能需要配置路径,具体看<a href="http://blog.csdn.net/xxmeng2012/article/details/51492149" target="_blank" rel="noopener">这篇文章</a>.</p>
+<hr>
+<h3 id="下载blog源文件备份并配置"><a href="#下载blog源文件备份并配置" class="headerlink" title="下载blog源文件备份并配置"></a>下载blog源文件备份并配置</h3><p>1.在配置完github密钥以及安装好npm的情况下,在终端cd到想要存放blog源文件的目录下,<code>git clone https://github.com/GosuncnStudio/Blog.git</code>.把博客源文件拷贝到本地路径,并与github产生依赖.<br>2.在终端输入<code>npm update</code>,npm会根据<code>package.json</code>文件而自动下载依赖的包.<br>3.若没提示错误则配置完成,可使用hexo进行发布blog.</p>
+<hr>
+<h3 id="使用hexo发布"><a href="#使用hexo发布" class="headerlink" title="使用hexo发布"></a>使用hexo发布</h3><ul>
+<li><code>hexo clean</code> 清除编译完成的public文件夹以及数据库文件</li>
+<li><code>hexo generate 或 hexo g</code> 编译源文件生产静态网页</li>
+<li><code>hexo server 或 hexo s</code> 开启服务,可通过<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>预览</li>
+<li><code>hexo deploy 或 hexo d</code> 部署发布到网站上</li>
+<li>通常的部署只需要三步,在终端hexo clean之后,hexo g &amp;&amp; hexo d.如图<br><img src="/img/hexo使用教程/5.png" alt="5.png"></li>
+<li>部署成功后把源文件的修改提交到github(地址:<a href="https://github.com/GosuncnStudio/Blog.git" target="_blank" rel="noopener">https://github.com/GosuncnStudio/Blog.git</a>)</li>
+</ul>
 <hr>
 <h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>1.打开终端进入一个你想存放hexo的路径.<br>2.输入命令：<code>npm install -g hexo</code><br>  若被墙,则使用<a href="http://npm.taobao.org/" target="_blank" rel="noopener">淘宝NPM镜像</a><br>  输入以下命令<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br><span class="line">cnpm install -g hexo-cli</span><br><span class="line">cnpm install hexo --save</span><br></pre></td></tr></table></figure></p>
-<p>3.输入<code>hexo -version</code>,若出现如下信息,则安装成功.<br><img src="/Users/kismet/Documents/hexo/source/img/hexo使用教程/4.jpg" alt="4.jpg"><br>4.安装<a href="https://link.jianshu.com/?t=https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">hexo-deployer-git</a>自动部署发布工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm instal lhexo-deployer-git  --save</span><br></pre></td></tr></table></figure></p>
+<p>3.输入<code>hexo -version</code>,若出现如下信息,则安装成功.<br><img src="/img/hexo使用教程/4.jpg" alt="4.jpg"><br>4.安装<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">hexo-deployer-git</a>自动部署发布工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git  --save</span><br></pre></td></tr></table></figure></p>
+<p>5.接下来的新建一个blog,参照<a href="http://www.jianshu.com/p/189fd945f38f" target="_blank" rel="noopener">这里</a>.</p>
 <hr>
-<h3 id="使用hexo发布"><a href="#使用hexo发布" class="headerlink" title="使用hexo发布"></a>使用hexo发布</h3><hr>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>1.<a href="http://www.jianshu.com/p/6ae3697a7c93" target="_blank" rel="noopener">Git的使用以及GitHub的配置</a><br>2.<a href="http://blog.csdn.net/hhhccckkk/article/details/50737077" target="_blank" rel="noopener">github配置密钥</a><br>3.<a href="http://www.jianshu.com/p/189fd945f38f" target="_blank" rel="noopener">搭建个人博客-hexo+github详细完整步骤</a></p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>1.<a href="http://www.jianshu.com/p/6ae3697a7c93" target="_blank" rel="noopener">Git的使用以及GitHub的配置</a><br>2.<a href="http://blog.csdn.net/hhhccckkk/article/details/50737077" target="_blank" rel="noopener">github配置密钥</a><br>3.<a href="http://www.jianshu.com/p/189fd945f38f" target="_blank" rel="noopener">搭建个人博客-hexo+github详细完整步骤</a><br>4.<a href="http://blog.csdn.net/xxmeng2012/article/details/51492149" target="_blank" rel="noopener"> NodeJS、NPM安装配置步骤(windows版本)</a></p>
 ]]></content>
       
         <categories>
@@ -55,6 +66,15 @@
 <h3 id="图片与超链接"><a href="#图片与超链接" class="headerlink" title="图片与超链接"></a>图片与超链接</h3><p><strong>超链接</strong><br><code>[高新兴移动开发小组](https://gosuncnstudio.github.io/)</code><br><a href="https://gosuncnstudio.github.io/">高新兴移动开发小组</a></p>
 <p><strong>网络图片调用</strong><br><code>![gosuncn](https://gosuncnstudio.github.io/img/avatar.png)</code><br><img src="https://gosuncnstudio.github.io/img/avatar.png" alt="gosuncn"></p>
 <p><strong>本地图片调用</strong><br><code>![gosuncn](img/avatar.png)</code><br><img src="img/avatar.png" alt="gosuncn"></p>
+<hr>
+<h3 id="文章中添加图片的方法"><a href="#文章中添加图片的方法" class="headerlink" title="文章中添加图片的方法"></a>文章中添加图片的方法</h3><ul>
+<li>图片都存放在source/img的路径下,每篇文章新建一个文件夹存放该文章所需要的图片.按顺序从1开始排列.</li>
+<li>把要用的图片先放在上述的路径下,直接拖进Markdown编译器并删除引用路径<code>/img/...</code>之前的路径,就可以完成引用.如图<br><img src="/img/hexo样式/1.png" alt="1.png"></li>
+</ul>
+<hr>
+<h3 id="添加分类和标签"><a href="#添加分类和标签" class="headerlink" title="添加分类和标签"></a>添加分类和标签</h3><ul>
+<li>在文章的categories添加分类(最好只有一个分类),在tags后面添加标签(可以有多个标签).如图<br><img src="/img/hexo样式/2.png" alt="2.png"></li>
+</ul>
 <hr>
 <h3 id="github挂件"><a href="#github挂件" class="headerlink" title="github挂件"></a>github挂件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;github-widget&quot; data-repo=&quot;GosuncnStudio/AppVerMgt&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <div class="github-widget" data-repo="GosuncnStudio/AppVerMgt"></div>

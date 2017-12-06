@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="GosuncnStudio" />
+
+
+
+<meta name="description" content="标题一级标题二级标题三级标题四级标题五级标题六级标题 代码高亮oc1234567891011- (void)lt_setBackgroundColor:(UIColor *)backgroundColor&amp;#123;    if (!self.overlay) &amp;#123;        [self setBackgroundImage:[UIImage new] forBarMetrics:UI">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo样式">
+<meta property="og:url" content="https://gosuncnstudio.github.io/2017/12/05/hexo样式/index.html">
+<meta property="og:site_name" content="高新兴移动开发小组">
+<meta property="og:description" content="标题一级标题二级标题三级标题四级标题五级标题六级标题 代码高亮oc1234567891011- (void)lt_setBackgroundColor:(UIColor *)backgroundColor&amp;#123;    if (!self.overlay) &amp;#123;        [self setBackgroundImage:[UIImage new] forBarMetrics:UI">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/avatar.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/2017/12/05/hexo样式/img/avatar.png">
+<meta property="og:updated_time" content="2017-12-05T08:34:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo样式">
+<meta name="twitter:description" content="标题一级标题二级标题三级标题四级标题五级标题六级标题 代码高亮oc1234567891011- (void)lt_setBackgroundColor:(UIColor *)backgroundColor&amp;#123;    if (!self.overlay) &amp;#123;        [self setBackgroundImage:[UIImage new] forBarMetrics:UI">
+<meta name="twitter:image" content="https://gosuncnstudio.github.io/img/avatar.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>hexo样式 | 高新兴移动开发小组</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">GosuncnStudio</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/开源项目主页/">开源项目主页</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:gosuncn_develop@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/GosuncnStudio" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://github.com/GosuncnStudio">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">GosuncnStudio</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">GosuncnStudio</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/开源项目主页/">开源项目主页</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:gosuncn_develop@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/GosuncnStudio" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-hexo样式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/05/hexo样式/" class="article-date">
+      <time datetime="2017-12-05T02:34:03.000Z" itemprop="datePublished">2017-12-05</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hexo样式
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/demo/">demo</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><hr>
+<h3 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h3><h4 id="oc"><a href="#oc" class="headerlink" title="oc"></a>oc</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)lt_setBackgroundColor:(<span class="built_in">UIColor</span> *)backgroundColor</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">self</span>.overlay) &#123;</span><br><span class="line">        [<span class="keyword">self</span> setBackgroundImage:[<span class="built_in">UIImage</span> new] forBarMetrics:<span class="built_in">UIBarMetricsDefault</span>];</span><br><span class="line">        <span class="keyword">self</span>.overlay = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">-20</span>, [<span class="built_in">UIScreen</span> mainScreen].bounds.size.width, <span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span>.bounds) + <span class="number">20</span>)];</span><br><span class="line">        <span class="keyword">self</span>.overlay.userInteractionEnabled = <span class="literal">NO</span>;</span><br><span class="line">        <span class="keyword">self</span>.overlay.autoresizingMask = <span class="built_in">UIViewAutoresizingFlexibleWidth</span>|<span class="built_in">UIViewAutoresizingFlexibleHeight</span>;</span><br><span class="line">        [<span class="keyword">self</span> insertSubview:<span class="keyword">self</span>.overlay atIndex:<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">self</span>.overlay.backgroundColor = backgroundColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="java"><a href="#java" class="headerlink" title="java"></a>java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initAreaData</span><span class="params">(List&lt;AreaInfo&gt; data)</span> </span>&#123;</span><br><span class="line">        areaInfos = data;</span><br><span class="line">        List&lt;String&gt; list = Stream.of(data).map(AreaInfo::getName).collect(Collectors.toList());</span><br><span class="line">        adapter.setList(list);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (list.size() &lt; <span class="number">7</span>) &#123;</span><br><span class="line">            getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, DensityUtils.dp2px(getApplication(), <span class="number">340</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="xml"><a href="#xml" class="headerlink" title="xml"></a>xml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">style</span>=<span class="string">"@style/LinearHorizontalStyle"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"@dimen/y34"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:padding</span>=<span class="string">"0dp"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/tv_person_name"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">style</span>=<span class="string">"@style/ListItem.Item"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:paddingLeft</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_weight</span>=<span class="string">"0.6"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">tools:text</span>=<span class="string">"欧阳雷锋"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> CMFormatDescriptionRef <span class="title">createFormatDescriptionFromH264Parameter</span><span class="params">(GSFrameParser *frameData, <span class="keyword">uint32_t</span> frameSize)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    CMFormatDescriptionRef fmt_desc = <span class="literal">NULL</span>;</span><br><span class="line">    OSStatus status;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">uint8_t</span> *<span class="keyword">const</span> parameterSetPointers[<span class="number">2</span>] = &#123;frameData.sps,frameData.pps&#125;;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">size_t</span> parmeterSetSizes[<span class="number">2</span>] = &#123;frameData.spsSize,frameData.ppsSize&#125;;</span><br><span class="line">    status = CMVideoFormatDescriptionCreateFromH264ParameterSets(kCFAllocatorDefault, <span class="number">2</span>, parameterSetPointers, parmeterSetSizes, <span class="number">4</span>, &amp;fmt_desc);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (status == noErr)</span><br><span class="line">        <span class="keyword">return</span> fmt_desc;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="字体样式"><a href="#字体样式" class="headerlink" title="字体样式"></a>字体样式</h3><p><code>**加黑**</code><br><strong>加黑</strong></p>
+<p><code>*强调(斜体)*</code><br><em>强调(斜体)</em></p>
+<p><code>++下划线++</code><br>++下划线++</p>
+<p><code>~~删除线~~</code><br><del>删除线</del></p>
+<p><code>==高亮==</code><br>==高亮==</p>
+<p><code>字^上标^</code><br>字^上标^</p>
+<p><code>字~下标~</code><br>字~下标~</p>
+<hr>
+<h3 id="图片与超链接"><a href="#图片与超链接" class="headerlink" title="图片与超链接"></a>图片与超链接</h3><p><strong>超链接</strong><br><code>[高新兴移动开发小组](https://gosuncnstudio.github.io/)</code><br><a href="https://gosuncnstudio.github.io/">高新兴移动开发小组</a></p>
+<p><strong>网络图片调用</strong><br><code>![gosuncn](https://gosuncnstudio.github.io/img/avatar.png)</code><br><img src="https://gosuncnstudio.github.io/img/avatar.png" alt="gosuncn"></p>
+<p><strong>本地图片调用</strong><br><code>![gosuncn](img/avatar.png)</code><br><img src="img/avatar.png" alt="gosuncn"></p>
+<hr>
+<h3 id="github挂件"><a href="#github挂件" class="headerlink" title="github挂件"></a>github挂件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;github-widget&quot; data-repo=&quot;GosuncnStudio/AppVerMgt&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<div class="github-widget" data-repo="GosuncnStudio/AppVerMgt"></div>
+
+<hr>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| 水果        | 价格    |  数量  |</span><br><span class="line">    | --------   | -----:   | :----: |</span><br><span class="line">    | 香蕉        | $1      |   5    |</span><br><span class="line">    | 苹果        | $1      |   6    |</span><br><span class="line">    | 草莓        | $1      |   7    |</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>水果</th>
+<th style="text-align:right">价格</th>
+<th style="text-align:center">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>香蕉</td>
+<td style="text-align:right">$1</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td>苹果</td>
+<td style="text-align:right">$1</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td>草莓</td>
+<td style="text-align:right">$1</td>
+<td style="text-align:center">7</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>1.<a href="http://blog.csdn.net/u013553529/article/details/50629055" target="_blank" rel="noopener">md语法高亮</a><br>2.<a href="https://www.cnblogs.com/liugang-vip/p/6337580.html" target="_blank" rel="noopener">md基本语法</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/12/05/hexo样式/">hexo样式</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">GosuncnStudio</a></p>
+        <p><span>发布时间:</span>2017-12-05, 10:34:03</p>
+        <p><span>最后更新:</span>2017-12-05, 16:34:04</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/12/05/hexo样式/" title="hexo样式">https://gosuncnstudio.github.io/2017/12/05/hexo样式/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://gosuncnstudio.github.io/2017/12/05/hexo样式/　　作者: GosuncnStudio" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/12/05/hexo使用教程/">
+                    hexo使用教程
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/12/04/GXXVideoPlayer配置/">
+                    GXXVideoPlayer配置
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#标题"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x6807;&#x9898;" class="headerlink" title="&#x6807;&#x9898;"></a>&#x6807;&#x9898;</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一级标题"><span class="toc-number"></span> <span class="toc-text"><a href="#&#x4E00;&#x7EA7;&#x6807;&#x9898;" class="headerlink" title="&#x4E00;&#x7EA7;&#x6807;&#x9898;"></a>&#x4E00;&#x7EA7;&#x6807;&#x9898;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#二级标题"><span class="toc-number"></span> <span class="toc-text"><a href="#&#x4E8C;&#x7EA7;&#x6807;&#x9898;" class="headerlink" title="&#x4E8C;&#x7EA7;&#x6807;&#x9898;"></a>&#x4E8C;&#x7EA7;&#x6807;&#x9898;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三级标题"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4E09;&#x7EA7;&#x6807;&#x9898;" class="headerlink" title="&#x4E09;&#x7EA7;&#x6807;&#x9898;"></a>&#x4E09;&#x7EA7;&#x6807;&#x9898;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#四级标题"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#&#x56DB;&#x7EA7;&#x6807;&#x9898;" class="headerlink" title="&#x56DB;&#x7EA7;&#x6807;&#x9898;"></a>&#x56DB;&#x7EA7;&#x6807;&#x9898;</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#五级标题"><span class="toc-number">1.1.1.</span> <span class="toc-text"><a href="#&#x4E94;&#x7EA7;&#x6807;&#x9898;" class="headerlink" title="&#x4E94;&#x7EA7;&#x6807;&#x9898;"></a>&#x4E94;&#x7EA7;&#x6807;&#x9898;</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#六级标题"><span class="toc-number">1.1.1.1.</span> <span class="toc-text"><a href="#&#x516D;&#x7EA7;&#x6807;&#x9898;" class="headerlink" title="&#x516D;&#x7EA7;&#x6807;&#x9898;"></a>&#x516D;&#x7EA7;&#x6807;&#x9898;</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码高亮"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x4EE3;&#x7801;&#x9AD8;&#x4EAE;" class="headerlink" title="&#x4EE3;&#x7801;&#x9AD8;&#x4EAE;"></a>&#x4EE3;&#x7801;&#x9AD8;&#x4EAE;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#oc"><span class="toc-number">2.1.</span> <span class="toc-text"><a href="#oc" class="headerlink" title="oc"></a>oc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#java"><span class="toc-number">2.2.</span> <span class="toc-text"><a href="#java" class="headerlink" title="java"></a>java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xml"><span class="toc-number">2.3.</span> <span class="toc-text"><a href="#xml" class="headerlink" title="xml"></a>xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C"><span class="toc-number">2.4.</span> <span class="toc-text"><a href="#C" class="headerlink" title="C++"></a>C++</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体样式"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x5B57;&#x4F53;&#x6837;&#x5F0F;" class="headerlink" title="&#x5B57;&#x4F53;&#x6837;&#x5F0F;"></a>&#x5B57;&#x4F53;&#x6837;&#x5F0F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图片与超链接"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x56FE;&#x7247;&#x4E0E;&#x8D85;&#x94FE;&#x63A5;" class="headerlink" title="&#x56FE;&#x7247;&#x4E0E;&#x8D85;&#x94FE;&#x63A5;"></a>&#x56FE;&#x7247;&#x4E0E;&#x8D85;&#x94FE;&#x63A5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#github挂件"><span class="toc-number">5.</span> <span class="toc-text"><a href="#github&#x6302;&#x4EF6;" class="headerlink" title="github&#x6302;&#x4EF6;"></a>github&#x6302;&#x4EF6;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格"><span class="toc-number">6.</span> <span class="toc-text"><a href="#&#x8868;&#x683C;" class="headerlink" title="&#x8868;&#x683C;"></a>&#x8868;&#x683C;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料"><span class="toc-number">7.</span> <span class="toc-text"><a href="#&#x53C2;&#x8003;&#x8D44;&#x6599;" class="headerlink" title="&#x53C2;&#x8003;&#x8D44;&#x6599;"></a>&#x53C2;&#x8003;&#x8D44;&#x6599;</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"hexo样式　| 高新兴移动开发小组　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/12/05/hexo样式/" data-title="hexo样式" data-url="https://gosuncnstudio.github.io/2017/12/05/hexo样式/"></div>
+    <script>
+        var duoshuoQuery = {short_name:""};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/12/05/hexo使用教程/" title="上一篇: hexo使用教程">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/12/04/GXXVideoPlayer配置/" title="下一篇: GXXVideoPlayer配置">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/hexo使用教程/">hexo使用教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/hexo样式/">hexo样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/04/GXXVideoPlayer配置/">GXXVideoPlayer配置</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                1997-2017 GosuncnStudio
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        $("a[target=_blank]").removeAttr("target");
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

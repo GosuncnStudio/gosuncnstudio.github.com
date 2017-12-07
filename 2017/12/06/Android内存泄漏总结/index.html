@@ -1,11 +1,303 @@
-<?xml version="1.0" encoding="utf-8"?>
-<search> 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="GosuncnStudio" />
+
+
+
+<meta name="description" content="Android 内存泄漏总结内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。最近自己阅读了大量相关的文档资料，打算做个 总结 沉淀下来跟大家一起分享和学习，也给自己一个警示，以后 coding 时怎么避免这些情况，提高应用的体验和质量。 我会从">
+<meta name="keywords" content="android,内存泄露">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存泄漏总结">
+<meta property="og:url" content="https://gosuncnstudio.github.io/2017/12/06/Android内存泄漏总结/index.html">
+<meta property="og:site_name" content="高新兴移动开发小组">
+<meta property="og:description" content="Android 内存泄漏总结内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。最近自己阅读了大量相关的文档资料，打算做个 总结 沉淀下来跟大家一起分享和学习，也给自己一个警示，以后 coding 时怎么避免这些情况，提高应用的体验和质量。 我会从">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.ibm.com/developerworks/cn/java/l-JavaMemoryLeak/1.gif">
+<meta property="og:image" content="http://www.ibm.com/developerworks/cn/java/l-JavaMemoryLeak/2.gif">
+<meta property="og:image" content="http://img.blog.csdn.net/20151123144226349?spm=5176.100239.blogcont.9.CtU1c4">
+<meta property="og:image" content="http://img2.tbcdn.cn/L1/461/1/fb05ff6d2e68f309b94dd84352c81acfe0ae839e?spm=5176.100239.blogcont.10.CtU1c4">
+<meta property="og:image" content="https://gw.alicdn.com/tps/TB1U6TNLVXXXXchXFXXXXXXXXXX-644-546.jpg">
+<meta property="og:image" content="https://gw.alicdn.com/tps/TB1oW_FLVXXXXXuaXXXXXXXXXXX-679-717.jpg">
+<meta property="og:updated_time" content="2017-12-07T01:35:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="内存泄漏总结">
+<meta name="twitter:description" content="Android 内存泄漏总结内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。最近自己阅读了大量相关的文档资料，打算做个 总结 沉淀下来跟大家一起分享和学习，也给自己一个警示，以后 coding 时怎么避免这些情况，提高应用的体验和质量。 我会从">
+<meta name="twitter:image" content="http://www.ibm.com/developerworks/cn/java/l-JavaMemoryLeak/1.gif">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>内存泄漏总结 | 高新兴移动开发小组</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">GosuncnStudio</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/开源项目主页/">开源项目主页</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:gosuncn_develop@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/GosuncnStudio" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄露/">内存泄露</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://github.com/GosuncnStudio">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">GosuncnStudio</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">GosuncnStudio</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/开源项目主页/">开源项目主页</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:gosuncn_develop@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/GosuncnStudio" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Android内存泄漏总结" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2017/12/06/Android内存泄漏总结/" class="article-date">
+      <time datetime="2017-12-06T08:33:07.000Z" itemprop="datePublished">2017-12-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
     
-    <entry>
-      <title><![CDATA[内存泄漏总结]]></title>
-      <url>/2017/12/06/Android%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%BB%E7%BB%93/</url>
-      <content type="html"><![CDATA[<h1 id="Android-内存泄漏总结"><a href="#Android-内存泄漏总结" class="headerlink" title="Android 内存泄漏总结"></a>Android 内存泄漏总结</h1><p>内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。最近自己阅读了大量相关的文档资料，打算做个 总结 沉淀下来跟大家一起分享和学习，也给自己一个警示，以后 coding 时怎么避免这些情况，提高应用的体验和质量。</p>
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      内存泄漏总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android-优化/">Android 优化</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内存泄露/">内存泄露</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Android-内存泄漏总结"><a href="#Android-内存泄漏总结" class="headerlink" title="Android 内存泄漏总结"></a>Android 内存泄漏总结</h1><p>内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。最近自己阅读了大量相关的文档资料，打算做个 总结 沉淀下来跟大家一起分享和学习，也给自己一个警示，以后 coding 时怎么避免这些情况，提高应用的体验和质量。</p>
 <p>我会从 java 内存泄漏的基础知识开始，并通过具体例子来说明 Android 引起内存泄漏的各种原因，以及如何利用工具来分析应用内存泄漏，最后再做总结。<br><a id="more"></a></p>
 <h2 id="Java-内存分配策略"><a href="#Java-内存分配策略" class="headerlink" title="Java 内存分配策略"></a>Java 内存分配策略</h2><p>Java 程序运行时的内存分配策略有三种,分别是静态分配,栈式分配,和堆式分配，对应的，三种存储策略使用的内存空间主要分别是静态存储区（也称方法区）、栈区和堆区。</p>
 <ul>
@@ -134,183 +426,236 @@
 <p>在 Java 的实现过程中，也要考虑其对象释放，最好的方法是在不使用某对象时，显式地将此对象赋值为 null，比如使用完Bitmap 后先调用 recycle()，再赋为null,清空对图片等资源有直接引用或者间接引用的数组（使用 array.clear() ; array = null）等，最好遵循谁创建谁释放的原则。</p>
 <p>正确关闭资源，对于使用了BraodcastReceiver，ContentObserver，File，游标 Cursor，Stream，Bitmap等资源的使用，应该在Activity销毁时及时关闭或者注销。</p>
 <p>保持对对象生命周期的敏感，特别注意单例、静态对象、全局性集合等的生命周期。</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Android 优化 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> android </tag>
-            
-            <tag> 内存泄露 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[hexo使用教程]]></title>
-      <url>/2017/12/05/hexo%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
-      <content type="html"><![CDATA[<h3 id="下载安装Git并配置"><a href="#下载安装Git并配置" class="headerlink" title="下载安装Git并配置"></a>下载安装Git并配置</h3><p><em>安装<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git 工具</a>，点击下载并安装。
-</em>配置公钥<br>1.在终端中输入ssh-keygen -t rsa -C 你的邮箱<br>比如 ：ssh-keygen -t rsa -C  hck@.com<br>然后一直回车，就行了<br>最后得到如图<br><img src="/img/hexo使用教程/1.png" alt="1.png"><br><a id="more"></a><br>2.它会生成一个 id _rsa.pub 文件，看上面截图，它有 保存路径的地址说明，按照保存路径找到文件，打开，复制里面的内容<br>登录到github，点击右上角 小三角，出现如图<br><img src="/img/hexo使用教程/2.png" alt="2.png"></p>
-<p>3.点击setting -&gt; sshkey -&gt; new ssh key（右上）<br>在页面随便填入一个title，然后key里面，把刚才复制的那个文本信息拷贝进去<br><img src="/img/hexo使用教程/3.png" alt="3.png"><br>点击add ssh key ，没有提示错误，就ok了.<br>4.测试SSH Key是否设置成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &apos;github.com (192.30.253.113)&apos; can&apos;t be established.</span><br><span class="line">RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)? yes</span><br></pre></td></tr></table></figure>
-<p>是否继续连接?输入yes<br>输出如下,则表示ssh key设置成功.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi xxxx! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure></p>
-<p>5.本地用户信息配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git config -l  查看当前配置信息</span><br><span class="line">credential.helper=osxkeychain</span><br><span class="line">user.name=adlerkismet</span><br><span class="line">user.email=sckismet07@gmail.com</span><br><span class="line">filter.lfs.clean=git-lfs clean -- %f</span><br><span class="line">filter.lfs.smudge=git-lfs smudge -- %f</span><br><span class="line">filter.lfs.process=git-lfs filter-process</span><br><span class="line">filter.lfs.required=true</span><br></pre></td></tr></table></figure></p>
-<p>6.全局用户信息配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name J_mialbox</span><br><span class="line">git config --global user.email J_mialbox@163.com</span><br><span class="line"></span><br><span class="line">//信息保存位置:chengaojian(用户名)</span><br><span class="line">/Users/chengaojian/.gitconfig</span><br><span class="line"></span><br><span class="line">打开gitconfig信息如下:</span><br><span class="line">[user]</span><br><span class="line">    name = J_mialbox</span><br><span class="line">    email = J_mialbox@163.com</span><br><span class="line"></span><br><span class="line">git log  --查看历史</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="下载安装node-js"><a href="#下载安装node-js" class="headerlink" title="下载安装node.js"></a>下载安装node.js</h3><p>1.<a href="https://link.jianshu.com/?t=https://nodejs.org/en/" target="_blank" rel="noopener">node.js下载地址</a><br>2.安装步骤：一路默认就行（安装路径根据自己需要更改）<br>3.windows平台下可能需要配置路径,具体看<a href="http://blog.csdn.net/xxmeng2012/article/details/51492149" target="_blank" rel="noopener">这篇文章</a>.</p>
-<hr>
-<h3 id="下载blog源文件备份并配置"><a href="#下载blog源文件备份并配置" class="headerlink" title="下载blog源文件备份并配置"></a>下载blog源文件备份并配置</h3><p>1.在配置完github密钥以及安装好npm的情况下,在终端cd到想要存放blog源文件的目录下,<code>git clone https://github.com/GosuncnStudio/Blog.git</code>.把博客源文件拷贝到本地路径,并与github产生依赖.<br>2.使用终端全局安装hexo,在终端输入<code>npm install -g hexo</code><br>3.在终端输入<code>npm update</code>,npm会根据<code>package.json</code>文件而自动下载依赖的包.<br>4.若没提示错误则配置完成,可使用hexo进行发布blog.</p>
-<hr>
-<h3 id="使用hexo发布"><a href="#使用hexo发布" class="headerlink" title="使用hexo发布"></a>使用hexo发布</h3><ul>
-<li><code>hexo new &quot;文章名&quot;</code>例如<code>hexo new &quot;测试文档&quot;</code>可生成一篇名为”测试文档”的新文章,存放在/source/_post/目录下,用markdown编辑器可以打开编辑.具体的md语法参照<a href="https://gosuncnstudio.github.io/2017/12/05/hexo%E6%A0%B7%E5%BC%8F/">hexo样式</a>.</li>
-<li><code>hexo clean</code> 清除编译完成的public文件夹以及数据库文件</li>
-<li><code>hexo generate 或 hexo g</code> 编译源文件生产静态网页</li>
-<li><code>hexo server 或 hexo s</code> 开启服务,可通过<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>预览</li>
-<li><code>hexo deploy 或 hexo d</code> 部署发布到网站上</li>
-<li>通常的部署只需要三步,在终端hexo clean之后,hexo g &amp;&amp; hexo d.如图<br><img src="/img/hexo使用教程/5.png" alt="5.png"></li>
-<li>部署成功后把源文件的修改提交到github(地址:<a href="https://github.com/GosuncnStudio/Blog.git" target="_blank" rel="noopener">https://github.com/GosuncnStudio/Blog.git</a>)</li>
-<li>第一次发布需要账号密码,看群公告.</li>
-</ul>
-<hr>
-<h3 id="部署一个全新的hexo博客"><a href="#部署一个全新的hexo博客" class="headerlink" title="部署一个全新的hexo博客"></a>部署一个全新的hexo博客</h3><p>1.先配置git密钥以及安装npm.<br>2.终端输入命令：<code>npm install -g hexo</code>,全局安装hexo.<br>  若被墙,则使用<a href="http://npm.taobao.org/" target="_blank" rel="noopener">淘宝NPM镜像</a><br>  输入以下命令<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br><span class="line">cnpm install -g hexo-cli</span><br><span class="line">cnpm install hexo --save</span><br></pre></td></tr></table></figure></p>
-<p>3.输入<code>hexo -version</code>,若出现如下信息,则安装成功.<br><img src="/img/hexo使用教程/4.jpg" alt="4.jpg"><br>4.安装<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">hexo-deployer-git</a>自动部署发布工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git  --save</span><br></pre></td></tr></table></figure></p>
-<p>5.接下来的新建一个blog,cd到想要存放blog的目录.终端执行<code>hexo init</code>,要求文件夹为空.</p>
-<hr>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>1.<a href="http://www.jianshu.com/p/6ae3697a7c93" target="_blank" rel="noopener">Git的使用以及GitHub的配置</a><br>2.<a href="http://blog.csdn.net/hhhccckkk/article/details/50737077" target="_blank" rel="noopener">github配置密钥</a><br>3.<a href="http://www.jianshu.com/p/189fd945f38f" target="_blank" rel="noopener">搭建个人博客-hexo+github详细完整步骤</a><br>4.<a href="http://blog.csdn.net/xxmeng2012/article/details/51492149" target="_blank" rel="noopener"> NodeJS、NPM安装配置步骤(windows版本)</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> 教程 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> hexo </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[hexo样式]]></title>
-      <url>/2017/12/05/hexo%E6%A0%B7%E5%BC%8F/</url>
-      <content type="html"><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><p><strong>注意具体标题和显示标题的#级数之间应该有空格,否则hexo可能识别不了该标题.如图</strong><br><img src="/img/hexo样式/3.png" alt="3.png"><br><a id="more"></a></p>
-<hr>
-<h3 id="首页显示文章的摘要设置"><a href="#首页显示文章的摘要设置" class="headerlink" title="首页显示文章的摘要设置"></a>首页显示文章的摘要设置</h3><p><strong>在正文的摘要和余下全文之间插入<code>&lt;!--more--&gt;</code>,如图</strong><br><img src="/img/hexo样式/4.png" alt="4.png"></p>
-<hr>
-<h3 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h3><p>使用格式为:<br><img src="/img/hexo样式/5.png" alt="5.png"><br>具体各种语言的languageKey,参见<a href="http://blog.csdn.net/u013553529/article/details/50629055" target="_blank" rel="noopener">md语法高亮</a></p>
-<h4 id="oc"><a href="#oc" class="headerlink" title="oc"></a>oc</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)lt_setBackgroundColor:(<span class="built_in">UIColor</span> *)backgroundColor</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">self</span>.overlay) &#123;</span><br><span class="line">        [<span class="keyword">self</span> setBackgroundImage:[<span class="built_in">UIImage</span> new] forBarMetrics:<span class="built_in">UIBarMetricsDefault</span>];</span><br><span class="line">        <span class="keyword">self</span>.overlay = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">-20</span>, [<span class="built_in">UIScreen</span> mainScreen].bounds.size.width, <span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span>.bounds) + <span class="number">20</span>)];</span><br><span class="line">        <span class="keyword">self</span>.overlay.userInteractionEnabled = <span class="literal">NO</span>;</span><br><span class="line">        <span class="keyword">self</span>.overlay.autoresizingMask = <span class="built_in">UIViewAutoresizingFlexibleWidth</span>|<span class="built_in">UIViewAutoresizingFlexibleHeight</span>;</span><br><span class="line">        [<span class="keyword">self</span> insertSubview:<span class="keyword">self</span>.overlay atIndex:<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">self</span>.overlay.backgroundColor = backgroundColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="java"><a href="#java" class="headerlink" title="java"></a>java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initAreaData</span><span class="params">(List&lt;AreaInfo&gt; data)</span> </span>&#123;</span><br><span class="line">        areaInfos = data;</span><br><span class="line">        List&lt;String&gt; list = Stream.of(data).map(AreaInfo::getName).collect(Collectors.toList());</span><br><span class="line">        adapter.setList(list);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (list.size() &lt; <span class="number">7</span>) &#123;</span><br><span class="line">            getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, DensityUtils.dp2px(getApplication(), <span class="number">340</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="xml"><a href="#xml" class="headerlink" title="xml"></a>xml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">style</span>=<span class="string">"@style/LinearHorizontalStyle"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"@dimen/y34"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:padding</span>=<span class="string">"0dp"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/tv_person_name"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">style</span>=<span class="string">"@style/ListItem.Item"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:paddingLeft</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_weight</span>=<span class="string">"0.6"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">tools:text</span>=<span class="string">"欧阳雷锋"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> CMFormatDescriptionRef <span class="title">createFormatDescriptionFromH264Parameter</span><span class="params">(GSFrameParser *frameData, <span class="keyword">uint32_t</span> frameSize)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    CMFormatDescriptionRef fmt_desc = <span class="literal">NULL</span>;</span><br><span class="line">    OSStatus status;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">uint8_t</span> *<span class="keyword">const</span> parameterSetPointers[<span class="number">2</span>] = &#123;frameData.sps,frameData.pps&#125;;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">size_t</span> parmeterSetSizes[<span class="number">2</span>] = &#123;frameData.spsSize,frameData.ppsSize&#125;;</span><br><span class="line">    status = CMVideoFormatDescriptionCreateFromH264ParameterSets(kCFAllocatorDefault, <span class="number">2</span>, parameterSetPointers, parmeterSetSizes, <span class="number">4</span>, &amp;fmt_desc);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (status == noErr)</span><br><span class="line">        <span class="keyword">return</span> fmt_desc;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="字体样式"><a href="#字体样式" class="headerlink" title="字体样式"></a>字体样式</h3><p><code>**加黑**</code><br><strong>加黑</strong></p>
-<p><code>*强调(斜体)*</code><br><em>强调(斜体)</em></p>
-<p><code>~~删除线~~</code><br><del>删除线</del></p>
-<hr>
-<h3 id="图片与超链接"><a href="#图片与超链接" class="headerlink" title="图片与超链接"></a>图片与超链接</h3><p><strong>超链接</strong><br><code>[高新兴移动开发小组](https://gosuncnstudio.github.io/)</code><br><a href="https://gosuncnstudio.github.io/">高新兴移动开发小组</a></p>
-<p><strong>网络图片调用</strong><br><code>![gosuncn](https://gosuncnstudio.github.io/img/avatar.png)</code><br><img src="https://gosuncnstudio.github.io/img/avatar.png" alt="gosuncn"></p>
-<p><strong>本地图片调用</strong><br><code>![gosuncn](/img/avatar.png)</code><br><img src="/img/avatar.png" alt="gosuncn"></p>
-<hr>
-<h3 id="文章中添加图片的方法"><a href="#文章中添加图片的方法" class="headerlink" title="文章中添加图片的方法"></a>文章中添加图片的方法</h3><ul>
-<li>图片都存放在source/img的路径下,每篇文章新建一个文件夹存放该文章所需要的图片.按顺序从1开始排列.</li>
-<li>把要用的图片先放在上述的路径下,直接拖进Markdown编译器并删除引用路径<code>/img/...</code>之前的路径,就可以完成引用.如图<br><img src="/img/hexo样式/1.png" alt="1.png"></li>
-</ul>
-<hr>
-<h3 id="添加分类和标签"><a href="#添加分类和标签" class="headerlink" title="添加分类和标签"></a>添加分类和标签</h3><ul>
-<li>在每篇文章自动生成的categories添加分类(最好只有一个分类),在tags后面添加标签(可以有多个标签).如图<br><img src="/img/hexo样式/2.png" alt="2.png"></li>
-</ul>
-<hr>
-<h3 id="github挂件"><a href="#github挂件" class="headerlink" title="github挂件"></a>github挂件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;github-widget&quot; data-repo=&quot;GosuncnStudio/AppVerMgt&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<div class="github-widget" data-repo="GosuncnStudio/AppVerMgt"></div>
 
-<hr>
-<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| 水果        | 价格    |  数量  |</span><br><span class="line">    | --------   | -----:   | :----: |</span><br><span class="line">    | 香蕉        | $1      |   5    |</span><br><span class="line">    | 苹果        | $1      |   6    |</span><br><span class="line">    | 草莓        | $1      |   7    |</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>水果</th>
-<th style="text-align:right">价格</th>
-<th style="text-align:center">数量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>香蕉</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">5</td>
-</tr>
-<tr>
-<td>苹果</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">6</td>
-</tr>
-<tr>
-<td>草莓</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">7</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>1.<a href="http://blog.csdn.net/u013553529/article/details/50629055" target="_blank" rel="noopener">md语法高亮</a><br>2.<a href="https://www.cnblogs.com/liugang-vip/p/6337580.html" target="_blank" rel="noopener">md基本语法</a></p>
-]]></content>
       
-        <categories>
-            
-            <category> demo </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> hexo </tag>
-            
-        </tags>
-        
-    </entry>
+    </div>
     
-    <entry>
-      <title><![CDATA[GXXVideoPlayer配置]]></title>
-      <url>/2017/12/04/GXXVideoPlayer%E9%85%8D%E7%BD%AE/</url>
-      <content type="html"><![CDATA[<h4 id="在Link-Binary-With-Libraries中添加libGXXVideoPlayer-a和libvideostack-a两个静态库。"><a href="#在Link-Binary-With-Libraries中添加libGXXVideoPlayer-a和libvideostack-a两个静态库。" class="headerlink" title="在Link Binary With Libraries中添加libGXXVideoPlayer.a和libvideostack.a两个静态库。"></a>在Link Binary With Libraries中添加libGXXVideoPlayer.a和libvideostack.a两个静态库。</h4><h4 id="在User-Header-Search-Paths中拖入GXXVideoPlayer和videostack两个库的地址。"><a href="#在User-Header-Search-Paths中拖入GXXVideoPlayer和videostack两个库的地址。" class="headerlink" title="在User Header Search Paths中拖入GXXVideoPlayer和videostack两个库的地址。"></a>在User Header Search Paths中拖入GXXVideoPlayer和videostack两个库的地址。</h4><p><img src="/img/GXXVideoPlayer配置/1.jpeg" alt="1.jpeg"></p>
-<h4 id="在Link-Binary-With-Libraries中加入7个动态库：libstdc-6-0-9-tbd-libz-1-2-8-tbd-libz-tbd-libbz2-tbd-libiconv-tbd-VideoToolbox-framework-CoreMedia-framework"><a href="#在Link-Binary-With-Libraries中加入7个动态库：libstdc-6-0-9-tbd-libz-1-2-8-tbd-libz-tbd-libbz2-tbd-libiconv-tbd-VideoToolbox-framework-CoreMedia-framework" class="headerlink" title="在Link Binary With Libraries中加入7个动态库：libstdc++.6.0.9.tbd,libz.1.2.8.tbd,libz.tbd,libbz2.tbd,libiconv.tbd, VideoToolbox.framework,CoreMedia.framework"></a>在Link Binary With Libraries中加入7个动态库：libstdc++.6.0.9.tbd,libz.1.2.8.tbd,libz.tbd,libbz2.tbd,libiconv.tbd, VideoToolbox.framework,CoreMedia.framework</h4><a id="more"></a>
-<p><img src="/img/GXXVideoPlayer配置/2.jpeg" alt="2.jpeg"></p>
-<h4 id="在Other-Linker-Flags添加-ObjC-lbz2-liconv（注意大小写）"><a href="#在Other-Linker-Flags添加-ObjC-lbz2-liconv（注意大小写）" class="headerlink" title="在Other Linker Flags添加-ObjC,-lbz2,-liconv（注意大小写）"></a>在Other Linker Flags添加-ObjC,-lbz2,-liconv（注意大小写）</h4><p><img src="/img/GXXVideoPlayer配置/3.jpeg" alt="3.jpeg"></p>
-<h4 id="在Preprocessor-Marcos中，Debug添加：DEBUG-1-LINUX-IOS-SD-WEBP-Release添加：-IOS-LINUX"><a href="#在Preprocessor-Marcos中，Debug添加：DEBUG-1-LINUX-IOS-SD-WEBP-Release添加：-IOS-LINUX" class="headerlink" title="在Preprocessor Marcos中，Debug添加：DEBUG=1,_LINUX,_IOS,SD_WEBP,Release添加：_IOS,_LINUX"></a>在Preprocessor Marcos中，Debug添加：DEBUG=1,_LINUX,_IOS,SD_WEBP,Release添加：_IOS,_LINUX</h4><p><img src="/img/GXXVideoPlayer配置/4.jpeg" alt="4.jpeg"></p>
-<p><img src="/img/GXXVideoPlayer配置/5.jpeg" alt="5.jpeg"></p>
-<p><img src="/img/GXXVideoPlayer配置/6.jpeg" alt="6.jpeg"></p>
-<h4 id="把项目中至少一个文件的-m后缀改成-mm支持c-（例如修改AppDelegate-m为AppDelegate-mm）"><a href="#把项目中至少一个文件的-m后缀改成-mm支持c-（例如修改AppDelegate-m为AppDelegate-mm）" class="headerlink" title="把项目中至少一个文件的.m后缀改成.mm支持c++.（例如修改AppDelegate.m为AppDelegate.mm）"></a>把项目中至少一个文件的.m后缀改成.mm支持c++.（例如修改AppDelegate.m为AppDelegate.mm）</h4><p><img src="/img/GXXVideoPlayer配置/7.jpeg" alt="7.jpeg"></p>
-]]></content>
-      
-        <categories>
-            
-            <category> 教程 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> iOS </tag>
-            
-            <tag> video </tag>
-            
-        </tags>
-        
-    </entry>
+  </div>
+  
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/12/06/Android内存泄漏总结/">内存泄漏总结</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">GosuncnStudio</a></p>
+        <p><span>发布时间:</span>2017-12-06, 16:33:07</p>
+        <p><span>最后更新:</span>2017-12-07, 09:35:29</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/12/06/Android内存泄漏总结/" title="内存泄漏总结">https://gosuncnstudio.github.io/2017/12/06/Android内存泄漏总结/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://gosuncnstudio.github.io/2017/12/06/Android内存泄漏总结/　　作者: GosuncnStudio" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/12/05/hexo使用教程/">
+                    hexo使用教程
+                </a>
+            </div>
+        
+    </nav>
+
   
-  
-</search>
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-内存泄漏总结"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Android-&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x603B;&#x7ED3;" class="headerlink" title="Android &#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x603B;&#x7ED3;"></a>Android &#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x603B;&#x7ED3;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-内存分配策略"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#Java-&#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;" class="headerlink" title="Java &#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;"></a>Java &#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栈与堆的区别："><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#&#x6808;&#x4E0E;&#x5806;&#x7684;&#x533A;&#x522B;&#xFF1A;" class="headerlink" title="&#x6808;&#x4E0E;&#x5806;&#x7684;&#x533A;&#x522B;&#xFF1A;"></a>&#x6808;&#x4E0E;&#x5806;&#x7684;&#x533A;&#x522B;&#xFF1A;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java是如何管理内存"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#Java&#x662F;&#x5982;&#x4F55;&#x7BA1;&#x7406;&#x5185;&#x5B58;" class="headerlink" title="Java&#x662F;&#x5982;&#x4F55;&#x7BA1;&#x7406;&#x5185;&#x5B58;"></a>Java&#x662F;&#x5982;&#x4F55;&#x7BA1;&#x7406;&#x5185;&#x5B58;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是Java中的内存泄露"><span class="toc-number">1.4.</span> <span class="toc-text"><a href="#&#x4EC0;&#x4E48;&#x662F;Java&#x4E2D;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x9732;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;Java&#x4E2D;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x9732;"></a>&#x4EC0;&#x4E48;&#x662F;Java&#x4E2D;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x9732;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android中常见的内存泄漏汇总"><span class="toc-number">1.5.</span> <span class="toc-text"><a href="#Android&#x4E2D;&#x5E38;&#x89C1;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x6C47;&#x603B;" class="headerlink" title="Android&#x4E2D;&#x5E38;&#x89C1;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x6C47;&#x603B;"></a>Android&#x4E2D;&#x5E38;&#x89C1;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x6C47;&#x603B;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集合类泄漏"><span class="toc-number">1.5.1.</span> <span class="toc-text"><a href="#&#x96C6;&#x5408;&#x7C7B;&#x6CC4;&#x6F0F;" class="headerlink" title="&#x96C6;&#x5408;&#x7C7B;&#x6CC4;&#x6F0F;"></a>&#x96C6;&#x5408;&#x7C7B;&#x6CC4;&#x6F0F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单例造成的内存泄漏"><span class="toc-number">1.5.2.</span> <span class="toc-text"><a href="#&#x5355;&#x4F8B;&#x9020;&#x6210;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;" class="headerlink" title="&#x5355;&#x4F8B;&#x9020;&#x6210;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;"></a>&#x5355;&#x4F8B;&#x9020;&#x6210;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名内部类-非静态内部类和异步线程"><span class="toc-number">1.5.3.</span> <span class="toc-text"><a href="#&#x533F;&#x540D;&#x5185;&#x90E8;&#x7C7B;-&#x975E;&#x9759;&#x6001;&#x5185;&#x90E8;&#x7C7B;&#x548C;&#x5F02;&#x6B65;&#x7EBF;&#x7A0B;" class="headerlink" title="&#x533F;&#x540D;&#x5185;&#x90E8;&#x7C7B;/&#x975E;&#x9759;&#x6001;&#x5185;&#x90E8;&#x7C7B;&#x548C;&#x5F02;&#x6B65;&#x7EBF;&#x7A0B;"></a>&#x533F;&#x540D;&#x5185;&#x90E8;&#x7C7B;/&#x975E;&#x9759;&#x6001;&#x5185;&#x90E8;&#x7C7B;&#x548C;&#x5F02;&#x6B65;&#x7EBF;&#x7A0B;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Handler-造成的内存泄漏"><span class="toc-number">1.5.4.</span> <span class="toc-text"><a href="#Handler-&#x9020;&#x6210;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;" class="headerlink" title="Handler &#x9020;&#x6210;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;"></a>Handler &#x9020;&#x6210;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#避免-override-finalize"><span class="toc-number">1.5.5.</span> <span class="toc-text"><a href="#&#x907F;&#x514D;-override-finalize" class="headerlink" title="&#x907F;&#x514D; override finalize()"></a>&#x907F;&#x514D; override finalize()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#资源未关闭造成的内存泄漏"><span class="toc-number">1.5.6.</span> <span class="toc-text"><a href="#&#x8D44;&#x6E90;&#x672A;&#x5173;&#x95ED;&#x9020;&#x6210;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;" class="headerlink" title="&#x8D44;&#x6E90;&#x672A;&#x5173;&#x95ED;&#x9020;&#x6210;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;"></a>&#x8D44;&#x6E90;&#x672A;&#x5173;&#x95ED;&#x9020;&#x6210;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些不良代码造成的内存压力"><span class="toc-number">1.5.7.</span> <span class="toc-text"><a href="#&#x4E00;&#x4E9B;&#x4E0D;&#x826F;&#x4EE3;&#x7801;&#x9020;&#x6210;&#x7684;&#x5185;&#x5B58;&#x538B;&#x529B;" class="headerlink" title="&#x4E00;&#x4E9B;&#x4E0D;&#x826F;&#x4EE3;&#x7801;&#x9020;&#x6210;&#x7684;&#x5185;&#x5B58;&#x538B;&#x529B;"></a>&#x4E00;&#x4E9B;&#x4E0D;&#x826F;&#x4EE3;&#x7801;&#x9020;&#x6210;&#x7684;&#x5185;&#x5B58;&#x538B;&#x529B;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.6.</span> <span class="toc-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"内存泄漏总结　| 高新兴移动开发小组　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/12/06/Android内存泄漏总结/" data-title="内存泄漏总结" data-url="https://gosuncnstudio.github.io/2017/12/06/Android内存泄漏总结/"></div>
+    <script>
+        var duoshuoQuery = {short_name:""};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/12/05/hexo使用教程/" title="下一篇: hexo使用教程">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/06/Android内存泄漏总结/">内存泄漏总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/hexo使用教程/">hexo使用教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/hexo样式/">hexo样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/04/GXXVideoPlayer配置/">GXXVideoPlayer配置</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                1997-2017 GosuncnStudio
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        $("a[target=_blank]").removeAttr("target");
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

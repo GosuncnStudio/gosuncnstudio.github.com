@@ -179,7 +179,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄露/">内存泄露</a></li></ul>
                     </div>
                 </section>
                 
@@ -248,6 +248,84 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Android内存泄漏总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/06/Android内存泄漏总结/" class="article-date">
+      <time datetime="2017-12-06T08:33:07.000Z" itemprop="datePublished">2017-12-06</time>
+</a>
+
+ 
+    <a href="/2017/12/06/Android内存泄漏总结/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2017/12/06/Android内存泄漏总结/" ></span>
+        
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/06/Android内存泄漏总结/">内存泄漏总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="Android-内存泄漏总结"><a href="#Android-内存泄漏总结" class="headerlink" title="Android 内存泄漏总结"></a>Android 内存泄漏总结</h1><p>内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。最近自己阅读了大量相关的文档资料，打算做个 总结 沉淀下来跟大家一起分享和学习，也给自己一个警示，以后 coding 时怎么避免这些情况，提高应用的体验和质量。</p>
+<p>我会从 java 内存泄漏的基础知识开始，并通过具体例子来说明 Android 引起内存泄漏的各种原因，以及如何利用工具来分析应用内存泄漏，最后再做总结。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android-优化/">Android 优化</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内存泄露/">内存泄露</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/12/06/Android内存泄漏总结/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-hexo使用教程" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -286,32 +364,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="下载安装Git并配置"><a href="#下载安装Git并配置" class="headerlink" title="下载安装Git并配置"></a>下载安装Git并配置</h3><p><em>安装<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git 工具</a>，点击下载并安装。
-</em>配置公钥<br>1.在终端中输入ssh-keygen -t rsa -C 你的邮箱<br>比如 ：ssh-keygen -t rsa -C  hck@.com<br>然后一直回车，就行了<br>最后得到如图<br><img src="/img/hexo使用教程/1.png" alt="1.png"></p>
-<p>2.它会生成一个 id _rsa.pub 文件，看上面截图，它有 保存路径的地址说明，按照保存路径找到文件，打开，复制里面的内容<br>登录到github，点击右上角 小三角，出现如图<br><img src="/img/hexo使用教程/2.png" alt="2.png"></p>
-<p>3.点击setting -&gt; sshkey -&gt; new ssh key（右上）<br>在页面随便填入一个title，然后key里面，把刚才复制的那个文本信息拷贝进去<br><img src="/img/hexo使用教程/3.png" alt="3.png"><br>点击add ssh key ，没有提示错误，就ok了.<br>4.本地用户信息配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git config -l  查看当前配置信息</span><br><span class="line">credential.helper=osxkeychain</span><br><span class="line">user.name=adlerkismet</span><br><span class="line">user.email=sckismet07@gmail.com</span><br><span class="line">filter.lfs.clean=git-lfs clean -- %f</span><br><span class="line">filter.lfs.smudge=git-lfs smudge -- %f</span><br><span class="line">filter.lfs.process=git-lfs filter-process</span><br><span class="line">filter.lfs.required=true</span><br></pre></td></tr></table></figure></p>
-<p>5.全局用户信息配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name J_mialbox</span><br><span class="line">git config --global user.email J_mialbox@163.com</span><br><span class="line"></span><br><span class="line">//信息保存位置:chengaojian(用户名)</span><br><span class="line">/Users/chengaojian/.gitconfig</span><br><span class="line"></span><br><span class="line">打开gitconfig信息如下:</span><br><span class="line">[user]</span><br><span class="line">    name = J_mialbox</span><br><span class="line">    email = J_mialbox@163.com</span><br><span class="line"></span><br><span class="line">git log  --查看历史</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="下载安装node-js"><a href="#下载安装node-js" class="headerlink" title="下载安装node.js"></a>下载安装node.js</h3><p>1.<a href="https://link.jianshu.com/?t=https://nodejs.org/en/" target="_blank" rel="noopener">node.js下载地址</a><br>2.安装步骤：一路默认就行（安装路径根据自己需要更改）<br>3.windows平台下可能需要配置路径,具体看<a href="http://blog.csdn.net/xxmeng2012/article/details/51492149" target="_blank" rel="noopener">这篇文章</a>.</p>
-<hr>
-<h3 id="下载blog源文件备份并配置"><a href="#下载blog源文件备份并配置" class="headerlink" title="下载blog源文件备份并配置"></a>下载blog源文件备份并配置</h3><p>1.在配置完github密钥以及安装好npm的情况下,在终端cd到想要存放blog源文件的目录下,<code>git clone https://github.com/GosuncnStudio/Blog.git</code>.把博客源文件拷贝到本地路径,并与github产生依赖.<br>2.在终端输入<code>npm update</code>,npm会根据<code>package.json</code>文件而自动下载依赖的包.<br>3.若没提示错误则配置完成,可使用hexo进行发布blog,而且无需再走安装hexo的步骤.</p>
-<hr>
-<h3 id="使用hexo发布"><a href="#使用hexo发布" class="headerlink" title="使用hexo发布"></a>使用hexo发布</h3><ul>
-<li><code>hexo clean</code> 清除编译完成的public文件夹以及数据库文件</li>
-<li><code>hexo generate 或 hexo g</code> 编译源文件生产静态网页</li>
-<li><code>hexo server 或 hexo s</code> 开启服务,可通过<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>预览</li>
-<li><code>hexo deploy 或 hexo d</code> 部署发布到网站上</li>
-<li>通常的部署只需要三步,在终端hexo clean之后,hexo g &amp;&amp; hexo d.如图<br><img src="/img/hexo使用教程/5.png" alt="5.png"></li>
-<li>部署成功后把源文件的修改提交到github(地址:<a href="https://github.com/GosuncnStudio/Blog.git" target="_blank" rel="noopener">https://github.com/GosuncnStudio/Blog.git</a>)</li>
-<li>第一次发布需要账号密码,看群公告.</li>
-</ul>
-<hr>
-<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>1.打开终端进入一个你想存放hexo的路径.<br>2.输入命令：<code>npm install -g hexo</code><br>  若被墙,则使用<a href="http://npm.taobao.org/" target="_blank" rel="noopener">淘宝NPM镜像</a><br>  输入以下命令<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br><span class="line">cnpm install -g hexo-cli</span><br><span class="line">cnpm install hexo --save</span><br></pre></td></tr></table></figure></p>
-<p>3.输入<code>hexo -version</code>,若出现如下信息,则安装成功.<br><img src="/img/hexo使用教程/4.jpg" alt="4.jpg"><br>4.安装<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">hexo-deployer-git</a>自动部署发布工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git  --save</span><br></pre></td></tr></table></figure></p>
-<p>5.接下来的新建一个blog,参照<a href="http://www.jianshu.com/p/189fd945f38f" target="_blank" rel="noopener">这里</a>.</p>
-<hr>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>1.<a href="http://www.jianshu.com/p/6ae3697a7c93" target="_blank" rel="noopener">Git的使用以及GitHub的配置</a><br>2.<a href="http://blog.csdn.net/hhhccckkk/article/details/50737077" target="_blank" rel="noopener">github配置密钥</a><br>3.<a href="http://www.jianshu.com/p/189fd945f38f" target="_blank" rel="noopener">搭建个人博客-hexo+github详细完整步骤</a><br>4.<a href="http://blog.csdn.net/xxmeng2012/article/details/51492149" target="_blank" rel="noopener"> NodeJS、NPM安装配置步骤(windows版本)</a></p>
-
+              <h3 id="下载安装Git并配置"><a href="#下载安装Git并配置" class="headerlink" title="下载安装Git并配置"></a>下载安装Git并配置</h3><p><em>安装<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git 工具</a>，点击下载并安装。
+</em>配置公钥<br>1.在终端中输入ssh-keygen -t rsa -C 你的邮箱<br>比如 ：ssh-keygen -t rsa -C  hck@.com<br>然后一直回车，就行了<br>最后得到如图<br><img src="/img/hexo使用教程/1.png" alt="1.png"><br>
+          
       
     </div>
     
@@ -328,6 +383,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/12/05/hexo使用教程/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -383,63 +442,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><hr>
-<h3 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h3><h4 id="oc"><a href="#oc" class="headerlink" title="oc"></a>oc</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)lt_setBackgroundColor:(<span class="built_in">UIColor</span> *)backgroundColor</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">self</span>.overlay) &#123;</span><br><span class="line">        [<span class="keyword">self</span> setBackgroundImage:[<span class="built_in">UIImage</span> new] forBarMetrics:<span class="built_in">UIBarMetricsDefault</span>];</span><br><span class="line">        <span class="keyword">self</span>.overlay = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">-20</span>, [<span class="built_in">UIScreen</span> mainScreen].bounds.size.width, <span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span>.bounds) + <span class="number">20</span>)];</span><br><span class="line">        <span class="keyword">self</span>.overlay.userInteractionEnabled = <span class="literal">NO</span>;</span><br><span class="line">        <span class="keyword">self</span>.overlay.autoresizingMask = <span class="built_in">UIViewAutoresizingFlexibleWidth</span>|<span class="built_in">UIViewAutoresizingFlexibleHeight</span>;</span><br><span class="line">        [<span class="keyword">self</span> insertSubview:<span class="keyword">self</span>.overlay atIndex:<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">self</span>.overlay.backgroundColor = backgroundColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="java"><a href="#java" class="headerlink" title="java"></a>java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initAreaData</span><span class="params">(List&lt;AreaInfo&gt; data)</span> </span>&#123;</span><br><span class="line">        areaInfos = data;</span><br><span class="line">        List&lt;String&gt; list = Stream.of(data).map(AreaInfo::getName).collect(Collectors.toList());</span><br><span class="line">        adapter.setList(list);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (list.size() &lt; <span class="number">7</span>) &#123;</span><br><span class="line">            getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, DensityUtils.dp2px(getApplication(), <span class="number">340</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="xml"><a href="#xml" class="headerlink" title="xml"></a>xml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">style</span>=<span class="string">"@style/LinearHorizontalStyle"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"@dimen/y34"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:padding</span>=<span class="string">"0dp"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/tv_person_name"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">style</span>=<span class="string">"@style/ListItem.Item"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:paddingLeft</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_weight</span>=<span class="string">"0.6"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">tools:text</span>=<span class="string">"欧阳雷锋"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> CMFormatDescriptionRef <span class="title">createFormatDescriptionFromH264Parameter</span><span class="params">(GSFrameParser *frameData, <span class="keyword">uint32_t</span> frameSize)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    CMFormatDescriptionRef fmt_desc = <span class="literal">NULL</span>;</span><br><span class="line">    OSStatus status;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">uint8_t</span> *<span class="keyword">const</span> parameterSetPointers[<span class="number">2</span>] = &#123;frameData.sps,frameData.pps&#125;;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">size_t</span> parmeterSetSizes[<span class="number">2</span>] = &#123;frameData.spsSize,frameData.ppsSize&#125;;</span><br><span class="line">    status = CMVideoFormatDescriptionCreateFromH264ParameterSets(kCFAllocatorDefault, <span class="number">2</span>, parameterSetPointers, parmeterSetSizes, <span class="number">4</span>, &amp;fmt_desc);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (status == noErr)</span><br><span class="line">        <span class="keyword">return</span> fmt_desc;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="字体样式"><a href="#字体样式" class="headerlink" title="字体样式"></a>字体样式</h3><p><code>**加黑**</code><br><strong>加黑</strong></p>
-<p><code>*强调(斜体)*</code><br><em>强调(斜体)</em></p>
-<p><code>~~删除线~~</code><br><del>删除线</del></p>
-<hr>
-<h3 id="图片与超链接"><a href="#图片与超链接" class="headerlink" title="图片与超链接"></a>图片与超链接</h3><p><strong>超链接</strong><br><code>[高新兴移动开发小组](https://gosuncnstudio.github.io/)</code><br><a href="https://gosuncnstudio.github.io/">高新兴移动开发小组</a></p>
-<p><strong>网络图片调用</strong><br><code>![gosuncn](https://gosuncnstudio.github.io/img/avatar.png)</code><br><img src="https://gosuncnstudio.github.io/img/avatar.png" alt="gosuncn"></p>
-<p><strong>本地图片调用</strong><br><code>![gosuncn](img/avatar.png)</code><br><img src="img/avatar.png" alt="gosuncn"></p>
-<hr>
-<h3 id="文章中添加图片的方法"><a href="#文章中添加图片的方法" class="headerlink" title="文章中添加图片的方法"></a>文章中添加图片的方法</h3><ul>
-<li>图片都存放在source/img的路径下,每篇文章新建一个文件夹存放该文章所需要的图片.按顺序从1开始排列.</li>
-<li>把要用的图片先放在上述的路径下,直接拖进Markdown编译器并删除引用路径<code>/img/...</code>之前的路径,就可以完成引用.如图<br><img src="/img/hexo样式/1.png" alt="1.png"></li>
-</ul>
-<hr>
-<h3 id="添加分类和标签"><a href="#添加分类和标签" class="headerlink" title="添加分类和标签"></a>添加分类和标签</h3><ul>
-<li>在文章的categories添加分类(最好只有一个分类),在tags后面添加标签(可以有多个标签).如图<br><img src="/img/hexo样式/2.png" alt="2.png"></li>
-</ul>
-<hr>
-<h3 id="github挂件"><a href="#github挂件" class="headerlink" title="github挂件"></a>github挂件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;github-widget&quot; data-repo=&quot;GosuncnStudio/AppVerMgt&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<div class="github-widget" data-repo="GosuncnStudio/AppVerMgt"></div>
-
-<hr>
-<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| 水果        | 价格    |  数量  |</span><br><span class="line">    | --------   | -----:   | :----: |</span><br><span class="line">    | 香蕉        | $1      |   5    |</span><br><span class="line">    | 苹果        | $1      |   6    |</span><br><span class="line">    | 草莓        | $1      |   7    |</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>水果</th>
-<th style="text-align:right">价格</th>
-<th style="text-align:center">数量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>香蕉</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">5</td>
-</tr>
-<tr>
-<td>苹果</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">6</td>
-</tr>
-<tr>
-<td>草莓</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">7</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>1.<a href="http://blog.csdn.net/u013553529/article/details/50629055" target="_blank" rel="noopener">md语法高亮</a><br>2.<a href="https://www.cnblogs.com/liugang-vip/p/6337580.html" target="_blank" rel="noopener">md基本语法</a></p>
-
+              <h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><p><strong>注意具体标题和显示标题的#级数之间应该有空格,否则hexo可能识别不了该标题.如图</strong><br><img src="/img/hexo样式/3.png" alt="3.png"><br>
+          
       
     </div>
     
@@ -456,6 +460,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/12/05/hexo样式/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -511,14 +519,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="在Link-Binary-With-Libraries中添加libGXXVideoPlayer-a和libvideostack-a两个静态库。"><a href="#在Link-Binary-With-Libraries中添加libGXXVideoPlayer-a和libvideostack-a两个静态库。" class="headerlink" title="在Link Binary With Libraries中添加libGXXVideoPlayer.a和libvideostack.a两个静态库。"></a>在Link Binary With Libraries中添加libGXXVideoPlayer.a和libvideostack.a两个静态库。</h4><h4 id="在User-Header-Search-Paths中拖入GXXVideoPlayer和videostack两个库的地址。"><a href="#在User-Header-Search-Paths中拖入GXXVideoPlayer和videostack两个库的地址。" class="headerlink" title="在User Header Search Paths中拖入GXXVideoPlayer和videostack两个库的地址。"></a>在User Header Search Paths中拖入GXXVideoPlayer和videostack两个库的地址。</h4><p><img src="/img/GXXVideoPlayer配置/1.jpeg" alt="1.jpeg"></p>
-<h4 id="在Link-Binary-With-Libraries中加入7个动态库：libstdc-6-0-9-tbd-libz-1-2-8-tbd-libz-tbd-libbz2-tbd-libiconv-tbd-VideoToolbox-framework-CoreMedia-framework"><a href="#在Link-Binary-With-Libraries中加入7个动态库：libstdc-6-0-9-tbd-libz-1-2-8-tbd-libz-tbd-libbz2-tbd-libiconv-tbd-VideoToolbox-framework-CoreMedia-framework" class="headerlink" title="在Link Binary With Libraries中加入7个动态库：libstdc++.6.0.9.tbd,libz.1.2.8.tbd,libz.tbd,libbz2.tbd,libiconv.tbd, VideoToolbox.framework,CoreMedia.framework"></a>在Link Binary With Libraries中加入7个动态库：libstdc++.6.0.9.tbd,libz.1.2.8.tbd,libz.tbd,libbz2.tbd,libiconv.tbd, VideoToolbox.framework,CoreMedia.framework</h4><p><img src="/img/GXXVideoPlayer配置/2.jpeg" alt="2.jpeg"></p>
-<h4 id="在Other-Linker-Flags添加-ObjC-lbz2-liconv（注意大小写）"><a href="#在Other-Linker-Flags添加-ObjC-lbz2-liconv（注意大小写）" class="headerlink" title="在Other Linker Flags添加-ObjC,-lbz2,-liconv（注意大小写）"></a>在Other Linker Flags添加-ObjC,-lbz2,-liconv（注意大小写）</h4><p><img src="/img/GXXVideoPlayer配置/3.jpeg" alt="3.jpeg"></p>
-<h4 id="在Preprocessor-Marcos中，Debug添加：DEBUG-1-LINUX-IOS-SD-WEBP-Release添加：-IOS-LINUX"><a href="#在Preprocessor-Marcos中，Debug添加：DEBUG-1-LINUX-IOS-SD-WEBP-Release添加：-IOS-LINUX" class="headerlink" title="在Preprocessor Marcos中，Debug添加：DEBUG=1,_LINUX,_IOS,SD_WEBP,Release添加：_IOS,_LINUX"></a>在Preprocessor Marcos中，Debug添加：DEBUG=1,_LINUX,_IOS,SD_WEBP,Release添加：_IOS,_LINUX</h4><p><img src="/img/GXXVideoPlayer配置/4.jpeg" alt="4.jpeg"></p>
-<p><img src="/img/GXXVideoPlayer配置/5.jpeg" alt="5.jpeg"></p>
-<p><img src="/img/GXXVideoPlayer配置/6.jpeg" alt="6.jpeg"></p>
-<h4 id="把项目中至少一个文件的-m后缀改成-mm支持c-（例如修改AppDelegate-m为AppDelegate-mm）"><a href="#把项目中至少一个文件的-m后缀改成-mm支持c-（例如修改AppDelegate-m为AppDelegate-mm）" class="headerlink" title="把项目中至少一个文件的.m后缀改成.mm支持c++.（例如修改AppDelegate.m为AppDelegate.mm）"></a>把项目中至少一个文件的.m后缀改成.mm支持c++.（例如修改AppDelegate.m为AppDelegate.mm）</h4><p><img src="/img/GXXVideoPlayer配置/7.jpeg" alt="7.jpeg"></p>
-
+              <h4 id="在Link-Binary-With-Libraries中添加libGXXVideoPlayer-a和libvideostack-a两个静态库。"><a href="#在Link-Binary-With-Libraries中添加libGXXVideoPlayer-a和libvideostack-a两个静态库。" class="headerlink" title="在Link Binary With Libraries中添加libGXXVideoPlayer.a和libvideostack.a两个静态库。"></a>在Link Binary With Libraries中添加libGXXVideoPlayer.a和libvideostack.a两个静态库。</h4><h4 id="在User-Header-Search-Paths中拖入GXXVideoPlayer和videostack两个库的地址。"><a href="#在User-Header-Search-Paths中拖入GXXVideoPlayer和videostack两个库的地址。" class="headerlink" title="在User Header Search Paths中拖入GXXVideoPlayer和videostack两个库的地址。"></a>在User Header Search Paths中拖入GXXVideoPlayer和videostack两个库的地址。</h4><p><img src="/img/GXXVideoPlayer配置/1.jpeg" alt="1.jpeg"></p>
+<h4 id="在Link-Binary-With-Libraries中加入7个动态库：libstdc-6-0-9-tbd-libz-1-2-8-tbd-libz-tbd-libbz2-tbd-libiconv-tbd-VideoToolbox-framework-CoreMedia-framework"><a href="#在Link-Binary-With-Libraries中加入7个动态库：libstdc-6-0-9-tbd-libz-1-2-8-tbd-libz-tbd-libbz2-tbd-libiconv-tbd-VideoToolbox-framework-CoreMedia-framework" class="headerlink" title="在Link Binary With Libraries中加入7个动态库：libstdc++.6.0.9.tbd,libz.1.2.8.tbd,libz.tbd,libbz2.tbd,libiconv.tbd, VideoToolbox.framework,CoreMedia.framework"></a>在Link Binary With Libraries中加入7个动态库：libstdc++.6.0.9.tbd,libz.1.2.8.tbd,libz.tbd,libbz2.tbd,libiconv.tbd, VideoToolbox.framework,CoreMedia.framework</h4>
+          
       
     </div>
     
@@ -535,6 +538,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/video/">video</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/12/04/GXXVideoPlayer配置/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

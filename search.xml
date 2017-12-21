@@ -14,6 +14,7 @@
 <h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t -rsa -C &quot;TaylorApril947939@gmail&quot;</span><br><span class="line">（在github上new SSH，内容为id_rsa.pub）</span><br></pre></td></tr></table></figure>
 <h3 id="添加远程库"><a href="#添加远程库" class="headerlink" title="添加远程库"></a>添加远程库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">（github上新建git仓库,选择REAMDE.md）</span><br><span class="line">git remote add origin git@github.com:TaylorApril/Baidu.git</span><br><span class="line">git push -u origin master</span><br><span class="line">（报错）</span><br><span class="line">git pull --rebase origin master</span><br><span class="line">git push -u origin master</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
 <h3 id="提交-文件名字read-txt"><a href="#提交-文件名字read-txt" class="headerlink" title="提交(文件名字read.txt)"></a>提交(文件名字read.txt)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add read.txt</span><br><span class="line">（所有文件 git add .）</span><br><span class="line">git commit -m &quot;说明文字&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">（查看最近到最远提交日志）</span><br><span class="line">git log --prtty=oneline</span><br><span class="line">（回退版本计数：HEAD^上一个版本、HEAD~100上与100个版本）</span><br><span class="line">git reset --hard HEAD^</span><br><span class="line">（回退版本号码：回退版本commit id为3628df）</span><br><span class="line">git reset --hard 3628df</span><br><span class="line">（想要恢复:使用命令记录来找回commit id回退）</span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure>
 <h3 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">———&gt;              git add files              git commit </span><br><span class="line">working directory--------------stage-------------history</span><br><span class="line">&lt;———         git checkout --files         git reset --files</span><br></pre></td></tr></table></figure>
 <h3 id="删除文件（read-txt）"><a href="#删除文件（read-txt）" class="headerlink" title="删除文件（read.txt）"></a>删除文件（read.txt）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rm read.txt</span><br><span class="line">（从版本库中删除）</span><br><span class="line">git rm read.txt</span><br><span class="line">git commit -m &quot;delete&quot;</span><br><span class="line">（删错了）</span><br><span class="line">git checkout -- read.txt</span><br></pre></td></tr></table></figure>
@@ -62,7 +63,7 @@
       <title><![CDATA[视频码流格式解析]]></title>
       <url>/2017/12/15/%E8%A7%86%E9%A2%91%E7%A0%81%E6%B5%81%E6%A0%BC%E5%BC%8F%E8%A7%A3%E6%9E%90/</url>
       <content type="html"><![CDATA[<h1 id="视频码流格式解析"><a href="#视频码流格式解析" class="headerlink" title="视频码流格式解析"></a>视频码流格式解析</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在做视频直播功能的时候，接触到很多视频的相关概念，这些概念如果不了解，功能开发很难进行下去。本文仅用于记录在开发过程中接触到的关于H.264及H.265码流格式相关内容。</p>
-<h2 id="视频封装格式"><a href="#视频封装格式" class="headerlink" title="视频封装格式"></a>视频封装格式</h2><p>在日常接触电脑视频文件的时候,可以发现视频文件通常会有不同的格式,用不同的后缀表示:avi,rmvb,mp4,flv等等。需要注意的是，这里的格式代表的是封装格式。封装格式是一种将音视频数据打包成一个文件的规范，其主要作用是把视频码流和音频码流按照一定的格式存储在一个文件中用以应对不同的播放需求。封装格式并不对视频图帧进行压缩，不同的封装格式对文件体积影响较小。<br>不同的视频封装格式里面存放的数据可能采用了多种不同的编码方式，现如今流行的封装格式如下表：</p>
+<h2 id="视频封装格式"><a href="#视频封装格式" class="headerlink" title="视频封装格式"></a>视频封装格式</h2><p>在日常接触电脑视频文件的时候,可以发现视频文件通常会有不同的格式,用不同的后缀表示:avi,rmvb,mp4,flv等等。需要注意的是，这里的格式代表的是封装格式。封装格式是一种将音视频数据打包成一个文件的规范，其主要作用是把视频码流和音频码流按照一定的格式存储在一个文件中用以应对不同的播放需求。封装格式并不对视频图帧进行压缩，不同的封装格式对文件体积影响较小。<br><a id="more"></a><br>不同的视频封装格式里面存放的数据可能采用了多种不同的编码方式，现如今流行的封装格式如下表：</p>
 <table>
 <thead>
 <tr>
@@ -471,7 +472,7 @@
       <title><![CDATA[内存泄漏总结]]></title>
       <url>/2017/12/06/Android%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<h1 id="转-Android-内存泄漏总结"><a href="#转-Android-内存泄漏总结" class="headerlink" title="(转)Android 内存泄漏总结"></a>(转)Android 内存泄漏总结</h1><h4 id="资料总结来源于网络，如有侵权，请第一时间告知。"><a href="#资料总结来源于网络，如有侵权，请第一时间告知。" class="headerlink" title=" 资料总结来源于网络，如有侵权，请第一时间告知。 "></a><em> 资料总结来源于网络，如有侵权，请第一时间告知。 </em></h4><p>内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。最近自己阅读了大量相关的文档资料，打算做个 总结 沉淀下来跟大家一起分享和学习，也给自己一个警示，以后 coding 时怎么避免这些情况，提高应用的体验和质量。</p>
-<p>我会从 java 内存泄漏的基础知识开始，并通过具体例子来说明 Android 引起内存泄漏的各种原因，以及如何利用工具来分析应用内存泄漏，最后再做总结。</p>
+<p>我会从 java 内存泄漏的基础知识开始，并通过具体例子来说明 Android 引起内存泄漏的各种原因，以及如何利用工具来分析应用内存泄漏，最后再做总结。<br><a id="more"></a></p>
 <h2 id="Java-内存分配策略"><a href="#Java-内存分配策略" class="headerlink" title="Java 内存分配策略"></a>Java 内存分配策略</h2><p>Java 程序运行时的内存分配策略有三种,分别是静态分配,栈式分配,和堆式分配，对应的，三种存储策略使用的内存空间主要分别是静态存储区（也称方法区）、栈区和堆区。</p>
 <ul>
 <li><p>静态存储区（方法区）：主要存放静态数据、全局 static 数据和常量。这块内存在程序编译时就已经分配好，并且在程序整个运行期间都存在。</p>
@@ -650,13 +651,15 @@
 <li><code>hexo server 或 hexo s</code> 开启服务,可通过<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>预览</li>
 <li><code>hexo deploy 或 hexo d</code> 部署发布到网站上</li>
 <li>通常的部署只需要三步,在终端hexo clean之后,hexo g &amp;&amp; hexo d.如图<br><img src="/img/hexo使用教程/5.png" alt="5.png"></li>
-<li>部署成功后把源文件的修改提交到github(地址:<a href="https://github.com/GosuncnStudio/Blog.git" target="_blank" rel="noopener">https://github.com/GosuncnStudio/Blog.git</a>)</li>
+<li>部署成功后把源文件的修改提交到github(地址:<a href="https://github.com/GosuncnMobile/Blog.git" target="_blank" rel="noopener">https://github.com/GosuncnMobile/Blog.git</a>)</li>
 <li>第一次发布需要账号密码,看部门群公告.<br>(如果报权限拒绝，则到控制面板中找到用户账户，在普通凭据中修改github的账号密码)</li>
 </ul>
 <hr>
 <h3 id="部署一个全新的hexo博客"><a href="#部署一个全新的hexo博客" class="headerlink" title="部署一个全新的hexo博客"></a>部署一个全新的hexo博客</h3><p>1.先配置git密钥以及安装npm.<br>2.终端输入命令：<code>npm install -g hexo</code>,全局安装hexo.<br>  若被墙,则使用<a href="http://npm.taobao.org/" target="_blank" rel="noopener">淘宝NPM镜像</a><br>  输入以下命令<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br><span class="line">cnpm install -g hexo-cli</span><br><span class="line">cnpm install hexo --save</span><br></pre></td></tr></table></figure></p>
 <p>3.输入<code>hexo -version</code>,若出现如下信息,则安装成功.<br><img src="/img/hexo使用教程/4.jpg" alt="4.jpg"><br>4.安装<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">hexo-deployer-git</a>自动部署发布工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git  --save</span><br></pre></td></tr></table></figure></p>
 <p>5.接下来的新建一个blog,cd到想要存放blog的目录.终端执行<code>hexo init</code>,要求文件夹为空.</p>
+<hr>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>更多hexo的拓展使用参照<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo中文文档</a>以及<a href="http://moxfive.coding.me/yelee/" target="_blank" rel="noopener">yelee主题使用文档</a>.</p>
 <hr>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>1.<a href="http://www.jianshu.com/p/6ae3697a7c93" target="_blank" rel="noopener">Git的使用以及GitHub的配置</a><br>2.<a href="http://blog.csdn.net/hhhccckkk/article/details/50737077" target="_blank" rel="noopener">github配置密钥</a><br>3.<a href="http://www.jianshu.com/p/189fd945f38f" target="_blank" rel="noopener">搭建个人博客-hexo+github详细完整步骤</a><br>4.<a href="http://blog.csdn.net/xxmeng2012/article/details/51492149" target="_blank" rel="noopener"> NodeJS、NPM安装配置步骤(windows版本)</a></p>
 ]]></content>
@@ -677,9 +680,15 @@
     </entry>
     
     <entry>
-      <title><![CDATA[hexo样式]]></title>
+      <title><![CDATA[hexo样式及md语法教程]]></title>
       <url>/2017/12/05/hexo%E6%A0%B7%E5%BC%8F/</url>
-      <content type="html"><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><p><strong>注意具体标题和显示标题的#级数之间应该有空格,否则hexo可能识别不了该标题.如图</strong><br><img src="/img/hexo样式/3.png" alt="3.png"><br><a id="more"></a></p>
+      <content type="html"><![CDATA[<h3 id="生成一篇新文章或者界面"><a href="#生成一篇新文章或者界面" class="headerlink" title="生成一篇新文章或者界面"></a>生成一篇新文章或者界面</h3><p>进入到blog目录下,终端输入<code>hexo new [文章类型] &quot;文章名字&quot;</code>([文章类型]可以省略),可生成一篇新文章,如图<br><img src="/img/hexo样式/6.png" alt="3.png"><br>文章类型可选种类:</p>
+<ul>
+<li>posts 普通文章,在文章列表里面显示</li>
+<li>page 界面,生成一个新界面,如开源项目主页,及优秀推荐等形式</li>
+<li>drafts 草稿,保存在资源目录,但没发表在文章目录上</li>
+</ul>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><p><strong>注意具体标题和显示标题的#级数之间应该有空格,否则hexo可能识别不了该标题.如图</strong><br><img src="/img/hexo样式/3.png" alt="3.png"><br><a id="more"></a></p>
 <hr>
 <h3 id="首页显示文章的摘要设置"><a href="#首页显示文章的摘要设置" class="headerlink" title="首页显示文章的摘要设置"></a>首页显示文章的摘要设置</h3><p><strong>在正文的摘要和余下全文之间插入<code>&lt;!--more--&gt;</code>,如图</strong><br><img src="/img/hexo样式/4.png" alt="4.png"></p>
 <hr>

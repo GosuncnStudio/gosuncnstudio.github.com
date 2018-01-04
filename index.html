@@ -138,10 +138,10 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
                     </ul>
@@ -181,7 +181,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄露/">内存泄露</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/视频码流/">视频码流</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/statusBar/">statusBar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄露/">内存泄露</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/注解/">注解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程切换/">线程切换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/视频码流/">视频码流</a></li></ul>
                     </div>
                 </section>
                 
@@ -248,9 +248,248 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Carthage-使用手册" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/01/04/Carthage-使用手册/" class="article-date">
+      <time datetime="2018-01-04T02:24:48.000Z" itemprop="datePublished">2018-01-04</time>
+</a>
+
+ 
+    <a href="/2018/01/04/Carthage-使用手册/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2018/01/04/Carthage-使用手册/" ></span>
+        
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/04/Carthage-使用手册/">Carthage 使用手册</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p><img src="../img/Carthage-使用手册/header.png" alt="header.png"></p>
+<h2 id="iOS第三方框架管理"><a href="#iOS第三方框架管理" class="headerlink" title="iOS第三方框架管理"></a>iOS第三方框架管理</h2><p>高效快速的软件开发离不开一些成熟的第三方框架,我们需要一些方法把自己和别人写的代码组织起来，高效地利用，并以此为基础构建软件。这就涉及到使用和维护框架。当然我们可以简单的从<a href="https://github.com" target="_blank" rel="noopener">github</a>中找到需要的代码，download下来并手动集成到你的项目中。但这种做法费时费力，且难以维护。这个时候我们需要一套适用于iOS的第三方框架依赖管理器。</p>
+<h4 id="CocoaPods"><a href="#CocoaPods" class="headerlink" title="CocoaPods"></a>CocoaPods</h4><p><a href="http://cocoapods.org" target="_blank" rel="noopener">CocoaPods</a> 是一个已经有五年历史的ruby程序，用于帮助获取和管理依赖框架。CocoaPods 的主要原理是框架的提供者通过编写合适的 PodSpec 文件来提供框架的基本信息，包括仓库地址，需要编译的文件，依赖等。用户使用 Podfile 文件指定想要使用的框架，CocoaPods 会创建一个新的工程来管理这些框架和它们的依赖，并把所有这些框架编译到成一个<em>静态的</em>libPod.a。然后新建一个 workspace 包含你原来的项目和这个新的框架项目，最后在原来的项目中使用这个 libPods.a。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/教程/">教程</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2018/01/04/Carthage-使用手册/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Android编译时注解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/27/Android编译时注解/" class="article-date">
+      <time datetime="2017-12-27T03:40:17.000Z" itemprop="datePublished">2017-12-27</time>
+</a>
+
+ 
+    <a href="/2017/12/27/Android编译时注解/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2017/12/27/Android编译时注解/" ></span>
+        
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/27/Android编译时注解/">Android编译时注解</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="Android编译时注解"><a href="#Android编译时注解" class="headerlink" title="Android编译时注解"></a>Android编译时注解</h1><p>[TOC]</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>相信大家经常都使用到注解，如果使用过AndroidAnnotations,Dagger2,EventBus,RxJava,BufferKnife等开源项目，对注解应该更为深刻，这些项目的原理基本都是基于编译时注解动态生成代码，效果等同于手写代码，因此相对反射来说性能基本无影响。</p>
+<p>另外，已经实现了<a href="https://github.com/android-coding-well/AwesomeTool" target="_blank" rel="noopener">注解轻松实现线程切换开源项目</a>，欢迎fork&amp;star.</p>
+<h2 id="了解注解"><a href="#了解注解" class="headerlink" title="了解注解"></a>了解注解</h2><h3 id="注解的概念"><a href="#注解的概念" class="headerlink" title="注解的概念"></a>注解的概念</h3><p>注解（Annotation），也叫元数据（Metadata），是Java5的新特性，JDK5引入了Metadata很容易的就能够调用Annotations。注解与类、接口、枚举在同一个层次，并可以应用于包、类型、构造方法、方法、成员变量、参数、本地变量的声明中，用来对这些元素进行说明注释。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/注解/">注解</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线程切换/">线程切换</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/12/27/Android编译时注解/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Android-statusBar-开发问题汇总" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/25/Android-statusBar-开发问题汇总/" class="article-date">
+      <time datetime="2017-12-25T07:52:45.000Z" itemprop="datePublished">2017-12-25</time>
+</a>
+
+ 
+    <a href="/2017/12/25/Android-statusBar-开发问题汇总/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2017/12/25/Android-statusBar-开发问题汇总/" ></span>
+        
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/25/Android-statusBar-开发问题汇总/">Android statusBar 开发问题汇总</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="Android-statusBar-开发问题汇总"><a href="#Android-statusBar-开发问题汇总" class="headerlink" title="Android statusBar 开发问题汇总"></a>Android statusBar 开发问题汇总</h3><h4 id="适配有虚拟按键的手机，比如华为荣耀系列手机"><a href="#适配有虚拟按键的手机，比如华为荣耀系列手机" class="headerlink" title="适配有虚拟按键的手机，比如华为荣耀系列手机"></a>适配有虚拟按键的手机，比如华为荣耀系列手机</h4><p>   手机开屏出现白屏和黑屏的解决方法是在开屏的Activity中进行设置自定义的主题：<br>   <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 防止欢迎页白屏或者黑屏，设置图片或者渐变drawable --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"AppTheme.SplashTheme"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="xml">       <span class="comment">&lt;!--最先呈现给用户查看--&gt;</span></span></span><br><span class="line"><span class="xml">       <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowBackground"</span>&gt;</span>@drawable/shape_bg_start_page<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="undefined">       </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>   在其他手机上如上诉代码设置即可，但在华为手机上会发现虚拟按钮及顶部statusBar跟自己设置的主题颜色很不协调。其颜色<br>   默认为 <strong> 黑底白字 </strong>。<br>   可以添加如下代码进行设置：</p>
+   <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 防止欢迎页白屏或者黑屏，设置图片 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"AppTheme.SplashTheme"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="xml">        <span class="comment">&lt;!--最先呈现给用户查看--&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowBackground"</span>&gt;</span>@drawable/shape_bg_start_page<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="comment">&lt;!--考虑华为手机虚拟按键的显示--&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowTranslucentNavigation"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowTranslucentStatus"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/statusBar/">statusBar</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/12/25/Android-statusBar-开发问题汇总/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Git常用命令简介" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -260,7 +499,7 @@
 </a>
 
  
-    <a href="/2017/12/18/Git常用命令简介/#comments" title="Comments">
+    <a href="/2017/12/18/Git常用命令简介/#comments" title="查看评论">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -345,7 +584,7 @@
 </a>
 
  
-    <a href="/2017/12/15/视频码流格式解析/#comments" title="Comments">
+    <a href="/2017/12/15/视频码流格式解析/#comments" title="查看评论">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -423,7 +662,7 @@
 </a>
 
  
-    <a href="/2017/12/07/破解摩拜成为私家车的有效方法/#comments" title="Comments">
+    <a href="/2017/12/07/破解摩拜成为私家车的有效方法/#comments" title="查看评论">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -510,7 +749,7 @@
 </a>
 
  
-    <a href="/2017/12/06/Android内存泄漏总结/#comments" title="Comments">
+    <a href="/2017/12/06/Android内存泄漏总结/#comments" title="查看评论">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -588,7 +827,7 @@
 </a>
 
  
-    <a href="/2017/12/05/hexo使用教程/#comments" title="Comments">
+    <a href="/2017/12/05/hexo使用教程/#comments" title="查看评论">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -666,7 +905,7 @@
 </a>
 
  
-    <a href="/2017/12/05/hexo样式/#comments" title="Comments">
+    <a href="/2017/12/05/hexo样式/#comments" title="查看评论">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -696,13 +935,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="生成一篇新文章或者界面"><a href="#生成一篇新文章或者界面" class="headerlink" title="生成一篇新文章或者界面"></a>生成一篇新文章或者界面</h3><p>进入到blog目录下,终端输入<code>hexo new [文章类型] &quot;文章名字&quot;</code>([文章类型]可以省略),可生成一篇新文章,如图<br><img src="/img/hexo样式/6.png" alt="3.png"><br>文章类型可选种类:</p>
+              <h3 id="生成一篇新文章或者界面"><a href="#生成一篇新文章或者界面" class="headerlink" title="生成一篇新文章或者界面"></a>生成一篇新文章或者界面</h3><p>进入到blog目录下,终端输入<code>hexo new [文章类型] &quot;文章名字&quot;</code>([文章类型]可以省略),可生成一篇新文章,如图<br><img src="../img/hexo样式/6.png" alt="3.png"><br>文章类型可选种类:</p>
 <ul>
 <li>posts 普通文章,在文章列表里面显示</li>
 <li>page 界面,生成一个新界面,如开源项目主页,及优秀推荐等形式</li>
 <li>drafts 草稿,保存在资源目录,但没发表在文章目录上</li>
 </ul>
-<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><p><strong>注意具体标题和显示标题的#级数之间应该有空格,否则hexo可能识别不了该标题.如图</strong><br><img src="/img/hexo样式/3.png" alt="3.png"><br>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><p><strong>注意具体标题和显示标题的#级数之间应该有空格,否则hexo可能识别不了该标题.如图</strong><br><img src="../img/hexo样式/3.png" alt="3.png"><br>
           
       
     </div>
@@ -749,7 +988,7 @@
 </a>
 
  
-    <a href="/2017/12/04/GXXVideoPlayer配置/#comments" title="Comments">
+    <a href="/2017/12/04/GXXVideoPlayer配置/#comments" title="查看评论">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -826,17 +1065,17 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                1997-2017 GosuncnStudio
+                1997-2018 GosuncnStudio
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -845,7 +1084,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -926,9 +1165,9 @@ MathJax.Hub.Queue(function() {
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="GosuncnStudio" />
+
+
+
+<meta name="description" content="Human Interface Guideline的适配建议遵循Safe Area(安全区域)的界定您的布局应在填满全屏超视网膜显示屏的同时，保证内容和控件正确显示，且便于点按。遵守安全区域的界定，以确保您的 app 与 iPhone X 新的屏幕比例合作无间。iOS 11 废弃了 iOS 7 之后出现的 topLayoutGuide/bottomLayoutGuide，取而代之的是safeLay">
+<meta name="keywords" content="iOS,适配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="适配iOS 11总结">
+<meta property="og:url" content="https://gosuncnstudio.github.io/2018/01/04/适配iOS-11相关解决方法/index.html">
+<meta property="og:site_name" content="高新兴移动开发小组">
+<meta property="og:description" content="Human Interface Guideline的适配建议遵循Safe Area(安全区域)的界定您的布局应在填满全屏超视网膜显示屏的同时，保证内容和控件正确显示，且便于点按。遵守安全区域的界定，以确保您的 app 与 iPhone X 新的屏幕比例合作无间。iOS 11 废弃了 iOS 7 之后出现的 topLayoutGuide/bottomLayoutGuide，取而代之的是safeLay">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/safeArea.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/safeArea1.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/safeArea2.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/safeAreaLayoutGuideDefault.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/safeAreaLayoutGuideAddition.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/statusBar.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/BarConrner.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/homeIdi.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/homeIndicator.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/videoScale.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/手机尺寸区别.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/iponeX.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/显示区域.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/iOS11BackButtonOlder.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/iOS11BackButtonOlderDetail.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/iOS10BackButtonCurrent.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/iOS11BackButtonCurrent.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/iOS11ItemNoConstant.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/iOS11ItemConstant.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/iOS10ItemNoConstant.jpeg">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/tableViewEroor1.gif">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/tableViewError2.gif">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/tableViewLandError.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/tableViewLandDetail.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/ios11tableViewLandRight.jpeg">
+<meta property="og:updated_time" content="2018-01-08T05:46:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="适配iOS 11总结">
+<meta name="twitter:description" content="Human Interface Guideline的适配建议遵循Safe Area(安全区域)的界定您的布局应在填满全屏超视网膜显示屏的同时，保证内容和控件正确显示，且便于点按。遵守安全区域的界定，以确保您的 app 与 iPhone X 新的屏幕比例合作无间。iOS 11 废弃了 iOS 7 之后出现的 topLayoutGuide/bottomLayoutGuide，取而代之的是safeLay">
+<meta name="twitter:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/safeArea.jpeg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>适配iOS 11总结 | 高新兴移动开发小组</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">GosuncnStudio</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/开源项目主页/">开源项目主页</a></li>
+                        
+                            <li><a href="/优秀推荐/">优秀推荐</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:gosuncn_develop@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/GosuncnStudio" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/statusBar/">statusBar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄露/">内存泄露</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/注解/">注解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程切换/">线程切换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/视频码流/">视频码流</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配/">适配</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://github.com/GosuncnStudio">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">GosuncnStudio</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">GosuncnStudio</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/开源项目主页/">开源项目主页</a></li>
+                
+                    <li><a href="/优秀推荐/">优秀推荐</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:gosuncn_develop@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/GosuncnStudio" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-适配iOS-11相关解决方法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/01/04/适配iOS-11相关解决方法/" class="article-date">
+      <time datetime="2018-01-04T05:59:01.000Z" itemprop="datePublished">2018-01-04</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      适配iOS 11总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/教程/">教程</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/适配/">适配</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="Human-Interface-Guideline的适配建议"><a href="#Human-Interface-Guideline的适配建议" class="headerlink" title="Human Interface Guideline的适配建议"></a>Human Interface Guideline的适配建议</h3><h4 id="遵循Safe-Area-安全区域-的界定"><a href="#遵循Safe-Area-安全区域-的界定" class="headerlink" title="遵循Safe Area(安全区域)的界定"></a>遵循Safe Area(安全区域)的界定</h4><p>您的布局应在填满全屏超视网膜显示屏的同时，保证内容和控件正确显示，且便于点按。遵守安全区域的界定，以确保您的 app 与 iPhone X 新的屏幕比例合作无间。<br><img src="/img/适配iOS-11相关解决方法/safeArea.jpeg" alt="safeArea.jpeg"><br>iOS 11 废弃了 iOS 7 之后出现的 topLayoutGuide/bottomLayoutGuide，取而代之的是safeLayoutGuide 概念。我们的UI元素都应该布局在这些区域之内，避免被各种 bar（NavgationBar、ToolBar、TabBar、StatusBar）遮挡。<br><a id="more"></a><br><img src="/img/适配iOS-11相关解决方法/safeArea1.jpeg" alt="safeArea1.jpeg"><br><img src="/img/适配iOS-11相关解决方法/safeArea2.jpeg" alt="safeArea2.jpeg"><br>如果我们用了 AutoLayout，并且开启了 safeAreaLayoutGuide，布局会自动加上这些 safeLayoutGuide，你的视图不会超出这部分 SafeArea。如图所示，如果你需要增加 Guide 的区域，那幺可以设置 self.additionalSafeAreaInsets 来增加区域。<br>默认的safeAreaLayoutGuide:<br><img src="/img/适配iOS-11相关解决方法/safeAreaLayoutGuideDefault.jpeg" alt="safeAreaLayoutGuideDefault.jpeg"><br>self.additionalSafeAreaInsets = UIEdgeInsetsMake(64, 0, 0, 0);的情况下:</p>
+<p><img src="/img/适配iOS-11相关解决方法/safeAreaLayoutGuideAddition.jpeg" alt="safeAreaLayoutGuideAddition.jpeg"></p>
+<h4 id="状态栏"><a href="#状态栏" class="headerlink" title="状态栏"></a>状态栏</h4><p>遵守安全区域的界定，在状态栏下面留出适当的空间。避免为状态栏高度预设值，这可能会导致您的内容被状态栏遮挡或形成错位。不可写死StatusBar的高度,iPhone X是44pt,其余为20pt.”如果你的 App 是隐藏 StatusBar 的，建议重新考虑。iPhone X 为用户在垂直空间上提供了更多展示余地，且状态栏中也包含了用户需要知道的信息，除非能通过隐藏状态栏带给用户额外的价值，否则苹果建议大家将状态栏还给用户。”<br>另外还有一点，用户在使用 iPhone X 打电话的时候，StatusBar 的高度也不会发生变化了。<br><img src="/img/适配iOS-11相关解决方法/statusBar.png" alt="statusBar.png"></p>
+<h4 id="圆弧展示角和传感器槽"><a href="#圆弧展示角和传感器槽" class="headerlink" title="圆弧展示角和传感器槽"></a>圆弧展示角和传感器槽</h4><p>您的 app 的内容元素和控制按键应避开屏幕角落和传感器槽，让其在填满屏幕的同时不被角落切割。<br><img src="/img/适配iOS-11相关解决方法/BarConrner.png" alt="BarConrner.png"></p>
+<h4 id="主屏幕指示器"><a href="#主屏幕指示器" class="headerlink" title="主屏幕指示器"></a>主屏幕指示器</h4><p>为使 app 的内容和控件始终保持清晰可见且便于点按，请确保您的 app 不会干扰主屏幕指示器。这部分的高度是34pt。<br><img src="/img/适配iOS-11相关解决方法/homeIdi.png" alt="homeIdi.png"><br><img src="/img/适配iOS-11相关解决方法/homeIndicator.jpeg" alt="homeIndicator.jpeg"></p>
+<h4 id="调整视频的缩放度"><a href="#调整视频的缩放度" class="headerlink" title="调整视频的缩放度"></a>调整视频的缩放度</h4><p>Phone X 上的视频内容应填满屏幕。但是，如果这导致顶部或底部被切割，或侧面裁剪太多，则应将视频拉伸或缩小以配合屏幕。当 AVPlayerViewController 自动管理时，基于 AVPlayerLayer 的自定义视频播放器需要选择适当的初始视频重力设置，并允许用户根据自己的喜好在 aspect (固定宽高比) 和 aspectFill (固定宽高比且全屏) 观看模式之间进行切换。</p>
+<blockquote>
+<p>更多详细信息:<a href="https://developer.apple.com/ios/human-interface-guidelines/overview/iphone-x/" target="_blank" rel="noopener">Human Interface Guidelines</a></p>
+</blockquote>
+<p><img src="/img/适配iOS-11相关解决方法/videoScale.png" alt="videoScale.png"></p>
+<h4 id="各个机型尺寸变化"><a href="#各个机型尺寸变化" class="headerlink" title="各个机型尺寸变化"></a>各个机型尺寸变化</h4><p><img src="/img/适配iOS-11相关解决方法/手机尺寸区别.png" alt="手机尺寸区别.png"><br>下图是 iPhone X 对比其他机型的变化部分。iPhone X 和 iPhone 8 的宽度一致，在垂直方向上多了145pt，这就意味着首页可以展示更多的内容.<br><img src="/img/适配iOS-11相关解决方法/iponeX.jpeg" alt="iponeX.jpeg"><br>iPhone X 的坐标系统以及能显示内容的区域如下图所示：<br><img src="/img/适配iOS-11相关解决方法/显示区域.jpeg" alt="显示区域.jpeg"></p>
+<h3 id="消除iPhone-X展示界面的上下黑边"><a href="#消除iPhone-X展示界面的上下黑边" class="headerlink" title="消除iPhone X展示界面的上下黑边"></a>消除iPhone X展示界面的上下黑边</h3><p>设置LaunchImage中对iPhone X的启动页图,或者设置LaunchScreen.storyboard</p>
+<h3 id="SearchBar适配"><a href="#SearchBar适配" class="headerlink" title="SearchBar适配"></a>SearchBar适配</h3><p>在使用SearchBar时,当hidesNavigationBarDuringPresentation为Yes时,在iPhone X以下机型会出现SearchBar上移6pt的问题.<br>出现该问题的原因是在iOS11中,SearchBar的高度改变了,从44pt变成了50pt.当默认present一个SearchResultController的时候,会隐藏NavigationBar.但是,此时SearchBar和StatusBar加起来的高度被限制成64pt,所以SearchBar的Frame会向上偏移6pt,可以通过KVO去监听SearchBar的Frame属性,当其searchBar.frame.origin.y == 14时,来更改其Frame.<br><code>使用KVO进行更改Frame不会使用户看到SearchBar视图位置的更改或者跳.</code><br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在该函数中处理Frame的变化</span></span><br><span class="line"><span class="meta">#pragma mark - View Life Cycle</span></span><br><span class="line"><span class="comment">//在退出该controller后移除观察者</span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidDisappear:(<span class="built_in">BOOL</span>)animated&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidDisappear:animated];</span><br><span class="line">    <span class="comment">//移除观察者</span></span><br><span class="line">    <span class="keyword">if</span> (@available(iOS <span class="number">11</span>, *)) &#123;</span><br><span class="line">        [<span class="keyword">self</span>.sourceController.searchController.searchBar removeObserver:<span class="keyword">self</span> forKeyPath:<span class="string">@"frame"</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#pragma mark - UISearchControllerDelegate</span></span><br><span class="line"><span class="comment">//在展示该controller之前监听searchBar的"frame"属性</span></span><br><span class="line">- (<span class="keyword">void</span>)willPresentSearchController:(<span class="built_in">UISearchController</span> *)searchController</span><br><span class="line">&#123;</span><br><span class="line">    _strSearchKey = <span class="string">@"test"</span>;</span><br><span class="line">    <span class="comment">//修复iOS 11 search bar向上偏移</span></span><br><span class="line">    <span class="keyword">if</span> (@available(iOS <span class="number">11</span>, *)) &#123;</span><br><span class="line">        [searchController.searchBar addObserver:<span class="keyword">self</span> forKeyPath:<span class="string">@"frame"</span> options:<span class="built_in">NSKeyValueObservingOptionNew</span> context:<span class="literal">nil</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#pragma mark - KVO</span></span><br><span class="line">- (<span class="keyword">void</span>)observeValueForKeyPath:(<span class="built_in">NSString</span> *)keyPath ofObject:(<span class="keyword">id</span>)object change:(<span class="built_in">NSDictionary</span> *)change context:(<span class="keyword">void</span> *)context</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">CGRect</span> rect = [change[<span class="string">@"new"</span>] <span class="built_in">CGRectValue</span>];</span><br><span class="line">    <span class="keyword">if</span> (rect.origin.y == <span class="number">14</span>) &#123;</span><br><span class="line">        <span class="built_in">CGRect</span> temp = rect;</span><br><span class="line">        temp.origin.y = <span class="number">20</span>;</span><br><span class="line">        [<span class="keyword">self</span>.sourceController.searchController.searchBar setValue:@(temp) forKey:<span class="string">@"frame"</span>];</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (rect.size.height == <span class="number">56</span>)&#123;</span><br><span class="line">        <span class="built_in">CGRect</span> temp = rect;</span><br><span class="line">        temp.size.height = <span class="number">50</span>;</span><br><span class="line">        [<span class="keyword">self</span>.sourceController.searchController.searchBar setValue:@(temp) forKey:<span class="string">@"frame"</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Navigation 集成 UISearchController<br>把你的UISearchController赋值给navigationItem，就可以实现将UISearchController集成到Navigation。<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">navigationItem.searchController <span class="comment">//iOS 11新增属性</span></span><br><span class="line">navigationItem.hideSearchBarWhenScrolling<span class="comment">//决定滑动的时候是否隐藏搜索框</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="ScrollView界面偏移20pt或者64pt"><a href="#ScrollView界面偏移20pt或者64pt" class="headerlink" title="ScrollView界面偏移20pt或者64pt."></a>ScrollView界面偏移20pt或者64pt.</h3><h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><p>原因是iOS 11中Controller的automaticallyAdjustsScrollViewInsets属性被废弃了，所以当tableView超出安全区域时系统自动调整了SafeAreaInsets值，进而影响adjustedContentInset值，在iOS 11中决定tableView的内容与边缘距离的是adjustedContentInset属性，而不是contentInset。因为系统对adjustedContentInset值进行了调整，所以导致tableView的内容到边缘的距离发生了变化，导致tableView下移了20pt（statusbar高度）或64pt（navigationbar高度)。</p>
+<h4 id="adjustContentInset属性的计算方式"><a href="#adjustContentInset属性的计算方式" class="headerlink" title="adjustContentInset属性的计算方式"></a>adjustContentInset属性的计算方式</h4><p>首先看scrollView在iOS11新增的两个属性：adjustContentInset 和 contentInsetAdjustmentBehavior。<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/* Configure the behavior of adjustedContentInset.</span></span><br><span class="line"><span class="comment">Default is UIScrollViewContentInsetAdjustmentAutomatic.</span></span><br><span class="line"><span class="comment">*/</span><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">UIScrollViewContentInsetAdjustmentBehavior</span> contentInsetAdjustmentBehavior</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>adjustContentInset表示contentView.frame.origin偏移了scrollview.frame.origin多少；是系统计算得来的，计算方式由contentInsetAdjustmentBehavior决定。有以下几种计算方式：</p>
+</blockquote>
+<p>1.UIScrollViewContentInsetAdjustmentAutomatic：如果scrollview在一个automaticallyAdjustsScrollViewContentInset = YES的controller上，并且这个Controller包含在一个navigation controller中，这种情况下会设置在top &amp; bottom上 adjustedContentInset = safeAreaInset + contentInset不管是否滚动。其他情况下与UIScrollViewContentInsetAdjustmentScrollableAxes相同</p>
+<p>2.UIScrollViewContentInsetAdjustmentScrollableAxes: 在可滚动方向上adjustedContentInset = safeAreaInset + contentInset，在不可滚动方向上adjustedContentInset = contentInset；依赖于scrollEnabled和alwaysBounceHorizontal / vertical = YES，scrollEnabled默认为yes，所以大多数情况下，计算方式还是adjustedContentInset = safeAreaInset + contentInset</p>
+<p>3.UIScrollViewContentInsetAdjustmentNever: adjustedContentInset = contentInset</p>
+<p>4.UIScrollViewContentInsetAdjustmentAlways: adjustedContentInset = safeAreaInset + contentInset</p>
+<p>当contentInsetAdjustmentBehavior设置为UIScrollViewContentInsetAdjustmentNever的时候，adjustContentInset值不受SafeAreaInset值的影响。</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>设置tableView的contentInsetAdjustmentBehavior属性.<br>如果不需要系统为你设置边缘距离，可以做以下设置：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//如果iOS的系统是11.0，会有这样一个宏定义“#define __IPHONE_11_0  110000”；如果系统版本低于11.0则没有这个宏定义</span></span><br><span class="line"><span class="meta">#ifdef __IPHONE_11_0</span></span><br><span class="line"><span class="keyword">if</span> ([tableView respondsToSelector:<span class="keyword">@selector</span>(setContentInsetAdjustmentBehavior:)]) &#123;</span><br><span class="line">    tableView.contentInsetAdjustmentBehavior = <span class="built_in">UIScrollViewContentInsetAdjustmentNever</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#endif</span></span><br></pre></td></tr></table></figure></p>
+<p>contentInsetAdjustmentBehavior属性也是用来取代automaticallyAdjustsScrollViewInsets属性的，推荐使用这种方式。</p>
+<h3 id="UITableViewStyleGrouped造成的偏移"><a href="#UITableViewStyleGrouped造成的偏移" class="headerlink" title="UITableViewStyleGrouped造成的偏移"></a>UITableViewStyleGrouped造成的偏移</h3><p>来着<a href="https://mp.weixin.qq.com/s/W1_0VrchCO50owhJNmJnuQ" target="_blank" rel="noopener">Bugly</a>的解决方法.</p>
+<blockquote>
+<p>tableView的style:UITableViewStyleGrouped类型，默认tableView开头和结尾是有间距的，不需要这个间距的话，可以通过实现heightForHeaderInSection方法（返回一个较小值：0.1）和viewForHeaderInSection（返回一个view）来去除头部的留白，底部同理。<br>iOS 11上发生tableView顶部有留白，原因是代码中只实现了heightForHeaderInSection方法，而没有实现viewForHeaderInSection方法。那样写是不规范的，只实现高度，而没有实现view，但代码这样写在iOS 11之前是没有问题的，iOS 11之后应该是由于开启了估算行高机制引起了bug。添加上viewForHeaderInSection方法后，问题就解决了。或者添加以下代码关闭估算行高，问题也得到解决。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.tableView.estimatedRowHeight = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">self</span>.tableView.estimatedSectionHeaderHeight = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">self</span>.tableView.estimatedSectionFooterHeight = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="BackButton的图片设置"><a href="#BackButton的图片设置" class="headerlink" title="BackButton的图片设置"></a>BackButton的图片设置</h3><p>iOS 11对整一个NavigationBar视图的层级进行了修改,原本设置backButton的方式不再起效.<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">UIBarButtonItem</span> appearance] setBackButtonBackgroundImage:[[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"navi_back"</span>] resizableImageWithCapInsets:<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, <span class="number">30</span>, <span class="number">0</span>, <span class="number">0</span>)] forState:<span class="built_in">UIControlStateNormal</span> barMetrics:<span class="built_in">UIBarMetricsDefault</span>];</span><br></pre></td></tr></table></figure></p>
+<p>会出现两个返回按钮,如图:<br><img src="/img/适配iOS-11相关解决方法/iOS11BackButtonOlder.jpeg" alt="iOS11BackButtonOlder.jpeg"><br>相对应的视图层级:<br><img src="/img/适配iOS-11相关解决方法/iOS11BackButtonOlderDetail.jpeg" alt="iOS11BackButtonOlderDetail.jpeg"><br>因此采用另外一种方式去设置backButton的图片:<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIImage</span> *backImage = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"navi_back"</span>];</span><br><span class="line">    [[<span class="built_in">UINavigationBar</span> appearance] setBackIndicatorImage:backImage];</span><br><span class="line">    [[<span class="built_in">UINavigationBar</span> appearance] setBackIndicatorTransitionMaskImage:backImage];</span><br></pre></td></tr></table></figure></p>
+<p>iOS 10下的视图层级:<br><img src="/img/适配iOS-11相关解决方法/iOS10BackButtonCurrent.jpeg" alt="iOS10BackButtonCurrent.jpeg"><br>iOS 11下的视图层级:<br><img src="/img/适配iOS-11相关解决方法/iOS11BackButtonCurrent.jpeg" alt="iOS11BackButtonCurrent.jpeg"></p>
+<h3 id="去除BackTitle的方法"><a href="#去除BackTitle的方法" class="headerlink" title="去除BackTitle的方法"></a>去除BackTitle的方法</h3><p>设置BackTitle的偏移量,根据是否iOS 11分别给一个偏移量.<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//系统返回按钮处的title偏移到可视范围之外</span></span><br><span class="line">    <span class="comment">//iOS11 和 iOS11以下分别处理</span></span><br><span class="line">    <span class="built_in">UIOffset</span> offset = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(<span class="string">@"11.0"</span>) ? <span class="built_in">UIOffsetMake</span>(<span class="number">-200</span>, <span class="number">0</span>) : <span class="built_in">UIOffsetMake</span>(<span class="number">0</span>, <span class="number">-80</span>);</span><br><span class="line">    [[<span class="built_in">UIBarButtonItem</span> appearance] setBackButtonTitlePositionAdjustment:offset forBarMetrics:<span class="built_in">UIBarMetricsDefault</span>];</span><br><span class="line">    [[<span class="built_in">UIBarButtonItem</span> appearance] setBackButtonTitlePositionAdjustment:offset forBarMetrics:<span class="built_in">UIBarMetricsCompact</span>];</span><br></pre></td></tr></table></figure></p>
+<h3 id="rightBarButtonItem设置"><a href="#rightBarButtonItem设置" class="headerlink" title="rightBarButtonItem设置"></a>rightBarButtonItem设置</h3><p>因为在iOS11中leftBarButtonItems以及rightBarButtonItems的视图层级进行了更改,所有的BarItem都会放在UIButtonBarStackView里面.UIButtonBarStackView是一个相对布局.会根据item的个数自动设置各个Item间的距离以及约束.用<code>initWithCustomView:</code>生成的UIBarButtonItem在没加约束的情况下会在屏幕上错位,或者第一次能出现,当第二次视图出现时就消失,在iOS 11以下为正常.分析下视图层级发现,当不加约束的情况下,系统会给contentView外层添加一个UITAMICAdaptorView作为适配器.而加了约束之后,contentView外层便只是UIButtonBarStackView.如图.<br><code>iOS11 BarButton的contentView不添加约束的情况下的视图层级:</code><br><img src="/img/适配iOS-11相关解决方法/iOS11ItemNoConstant.jpeg" alt="iOS11ItemNoConstant.jpeg"></p>
+<p><code>iOS11 BarButton的contentView添加约束的情况下的视图层级:</code><br><img src="/img/适配iOS-11相关解决方法/iOS11ItemConstant.jpeg" alt="iOS11ItemConstant.jpeg"></p>
+<p><code>iOS11 之前BarButton的contentView不添加约束的情况下的视图层级:</code><br><img src="/img/适配iOS-11相关解决方法/iOS10ItemNoConstant.jpeg" alt="iOS10ItemNoConstant.jpeg"><br>因此,解决方法在iOS 11下为给contentView添加约束,若一个items里面有多个item用contentView生成的话,也是同理分别设置约束.代码如下:<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_dropdownMenu = [[<span class="built_in">MKDropdownMenu</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">44</span>)];</span><br><span class="line">   <span class="keyword">self</span>.dropMenuItem = [[<span class="built_in">UIBarButtonItem</span> alloc]initWithCustomView:_dropdownMenu];</span><br><span class="line">   <span class="keyword">if</span>(@available(iOS <span class="number">11</span>, *))&#123;</span><br><span class="line">       [<span class="keyword">self</span>.dropMenuItem.customView.heightAnchor constraintEqualToConstant:<span class="number">44</span>].active = <span class="literal">YES</span>;</span><br><span class="line">       [<span class="keyword">self</span>.dropMenuItem.customView.widthAnchor constraintEqualToConstant:<span class="number">100</span>].active = <span class="literal">YES</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">self</span>.navigationItem.leftBarButtonItem = <span class="keyword">self</span>.dropMenuItem;</span><br></pre></td></tr></table></figure></p>
+<h3 id="流式布局的iPhone-X适配"><a href="#流式布局的iPhone-X适配" class="headerlink" title="流式布局的iPhone X适配"></a>流式布局的iPhone X适配</h3><p>流式布局中的cell无需避开home indicator区域,直接展示即可.虽然cell的边角可能会被home indicator区域的圆角遮挡,减少某些信息.但给予用户的可视空间更大,而且与home indicator有冲突的交互操作可以上拉至安全区域进行点击.</p>
+<h3 id="适配到iOS8的布局设置"><a href="#适配到iOS8的布局设置" class="headerlink" title="适配到iOS8的布局设置"></a>适配到iOS8的布局设置</h3><p>SafeArea最低适配到iOS9,但项目要求最低适配到iOS8.因此可以先使用topLayoutGuide和BottomLayoutGuide代替.</p>
+<h3 id="横屏时tableview的适配"><a href="#横屏时tableview的适配" class="headerlink" title="横屏时tableview的适配"></a>横屏时tableview的适配</h3><ul>
+<li>先看几个在iPhone X上适配错误的例子<br><img src="/img/适配iOS-11相关解决方法/tableViewEroor1.gif" alt="tableViewEroor1.gif"></li>
+</ul>
+<p><img src="/img/适配iOS-11相关解决方法/tableViewError2.gif" alt="tableViewError2.gif"></p>
+<ul>
+<li>头部导航栏不予许进行用户交互的，意味着上面这两种情况 Apple 官方是不允许的</li>
+<li>使用官方推荐的safe Area在大多数情况下可以解决问题,但在横屏情况下还需要额外进行适配.</li>
+</ul>
+<p><img src="/img/适配iOS-11相关解决方法/tableViewLandError.png" alt="tableViewLandError.png"></p>
+<ul>
+<li>产生这个原因代码是：<code>[headerView.contentView setBackgroundColor:[UIColor headerFooterColor]]，</code>这个写法看起来没错，但是只有在 iPhone X上有问题</li>
+<li>原因:</li>
+</ul>
+<p><img src="/img/适配iOS-11相关解决方法/tableViewLandDetail.png" alt="tableViewLandDetail.png"></p>
+<ul>
+<li>解决方法：设置backgroundView颜色 <code>[headerView.backgroundView setBackgroundColor:[UIColor headerFooterColor]]</code></li>
+</ul>
+<p><img src="/img/适配iOS-11相关解决方法/ios11tableViewLandRight.jpeg" alt="ios11tableViewLandRight.jpeg"></p>
+<h3 id="隐藏底部Indicator"><a href="#隐藏底部Indicator" class="headerlink" title="隐藏底部Indicator"></a>隐藏底部Indicator</h3><p>如果业务需求需要隐藏底部Indicator(apple官方不推荐隐藏)<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在VC里面重写下面这个方法即可</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)prefersHomeIndicatorAutoHidden&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="发送原图功能"><a href="#发送原图功能" class="headerlink" title="发送原图功能"></a>发送原图功能</h3><p>对于IM的发送原图功能，iOS11启动全新的<strong>HEIC</strong>格式的图片，iPhone7以上设备+iOS11拍出的live照片是<code>.heic</code>格式图片，同一张live格式的图片，iOS10发送就没问题（转成了jpg），iOS11就不行.</p>
+<ul>
+<li>微信的处理方式是一比一转化成<strong>jpg</strong>格式</li>
+<li>QQ和钉钉的处理方式是直接压缩,即使是原图也压缩为非原图</li>
+<li>可采取微信的方案,使用以下代码转化成jpg格式<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 0.83能保证压缩前后图片大小是一致的</span></span><br><span class="line"><span class="comment">// 造成不一致的原因是图片的bitmap一个是8位的，一个是16位的</span></span><br><span class="line">imageData = <span class="built_in">UIImageJPEGRepresentation</span>([<span class="built_in">UIImage</span> imageWithData:imageData], <span class="number">0.83</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="权限处理"><a href="#权限处理" class="headerlink" title="权限处理"></a>权限处理</h3><p>iOS 11中,隐私权限配置发生了改变,将原来的相册访问权限放开了,现在有读写两种权限.</p>
+<blockquote>
+<p>iOS 11访问权限列表</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">隐私数据</th>
+<th style="text-align:center">对应key值</th>
+<th style="text-align:center">提示语</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">NFC(使用)</td>
+<td style="text-align:center">NFCReaderUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能使用NFC功能</td>
+</tr>
+<tr>
+<td style="text-align:center">相册(读)</td>
+<td style="text-align:center">NSPhotoLibraryUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能访问相册</td>
+</tr>
+<tr>
+<td style="text-align:center">相册(写)</td>
+<td style="text-align:center">NSPhotoLibraryAddUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能添加照片</td>
+</tr>
+<tr>
+<td style="text-align:center">相机</td>
+<td style="text-align:center">NSCameraUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能访问相机</td>
+</tr>
+<tr>
+<td style="text-align:center">麦克风</td>
+<td style="text-align:center">NSMicrophoneUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能访问麦克风</td>
+</tr>
+<tr>
+<td style="text-align:center">位置</td>
+<td style="text-align:center">NSLocationUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能访问位置</td>
+</tr>
+<tr>
+<td style="text-align:center">在使用期间访问位置(前台)</td>
+<td style="text-align:center">NSLocationWhenInUseUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能在使用期间访问位置</td>
+</tr>
+<tr>
+<td style="text-align:center">始终访问位置</td>
+<td style="text-align:center">NSLocationAlwaysUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能始终访问位置</td>
+</tr>
+<tr>
+<td style="text-align:center">日历</td>
+<td style="text-align:center">NSCalendarsUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能访问日历</td>
+</tr>
+<tr>
+<td style="text-align:center">提醒事项</td>
+<td style="text-align:center">NSRemindersUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能访问提醒事项</td>
+</tr>
+<tr>
+<td style="text-align:center">运动与健身</td>
+<td style="text-align:center">NSMotionUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能访问运动与健身</td>
+</tr>
+<tr>
+<td style="text-align:center">健康更新</td>
+<td style="text-align:center">NSHealthUpdateUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能访问健康更新</td>
+</tr>
+<tr>
+<td style="text-align:center">健康分享</td>
+<td style="text-align:center">NSHealthShareUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能访问健康分享</td>
+</tr>
+<tr>
+<td style="text-align:center">蓝牙</td>
+<td style="text-align:center">NSBluetoothPeripheralUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能访问蓝牙</td>
+</tr>
+<tr>
+<td style="text-align:center">媒体资料库</td>
+<td style="text-align:center">NSAppleMusicUsageDescription</td>
+<td style="text-align:center">“XXX”需要您的同意，才能访问媒体资料库</td>
+</tr>
+</tbody>
+</table>
+<h4 id="近场通讯NFC权限案例"><a href="#近场通讯NFC权限案例" class="headerlink" title="近场通讯NFC权限案例"></a>近场通讯NFC权限案例</h4><blockquote>
+<p><a href="https://stackoverflow.com/questions/44380305/ios-11-core-nfc-any-sample-code" target="_blank" rel="noopener">iOS 11 Core NFC - any sample code?</a></p>
+</blockquote>
+<h4 id="ios11-地图定位权限设置"><a href="#ios11-地图定位权限设置" class="headerlink" title="ios11 地图定位权限设置"></a>ios11 地图定位权限设置</h4><p>iOS 11在定位权限设置上有更新，可以按以下方式进行设置：<br>在项目的 Info.plist 添加定位权限申请，根据业务需求，选择下列方式设置。<br>其中：<br><code>iOS 8 - iOS 10 版本：</code><br>NSLocationWhenInUseUsageDescription 表示应用在前台的时候可以搜到更新的位置信息。<br>NSLocationAlwaysUsageDescription 申请Always权限，以便应用在前台和后台（suspend 或 terminated）都可以获取到更新的位置数据。</p>
+<p><code>iOS 11 版本：</code><br>NSLocationAlwaysAndWhenInUseUsageDescription 申请Always权限，以便应用在前台和后台（suspend 或 terminated）都可以获取到更新的位置数据（NSLocationWhenInUseUsageDescription 也必须有）。</p>
+<p><code>iOS 8-iOS 11</code><br>如果需要同时支持在iOS8-iOS10和iOS11系统上后台定位，建议在plist文件中同时添加NSLocationWhenInUseUsageDescription、NSLocationAlwaysUsageDescription和NSLocationAlwaysAndWhenInUseUsageDescription权限申请。</p>
+<hr>
+<p>参考:<br><a href="https://www.imuo.com/a/943178cc983067710b47289d983da868881bea05e142bc6014324f0cb9a91d82" target="_blank" rel="noopener">1.关于刘海打理这种事儿，美团点评的iOS工程师早就有经验了，不信你看！</a><br><a href="https://www.jianshu.com/p/f5ee206c7df0" target="_blank" rel="noopener">2.iOS11、iPhone X、Xcode9 适配指南</a><br><a href="https://developer.apple.com/cn/ios/update-apps-for-iphone-x/" target="_blank" rel="noopener">3.为 iPhone X 更新您的 app。</a><br><a href="https://mp.weixin.qq.com/s/W1_0VrchCO50owhJNmJnuQ" target="_blank" rel="noopener">4.iOS 11 安全区域适配总结</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/01/04/适配iOS-11相关解决方法/">适配iOS 11总结</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">GosuncnStudio</a></p>
+        <p><span>发布时间:</span>2018-01-04, 13:59:01</p>
+        <p><span>最后更新:</span>2018-01-08, 13:46:07</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/01/04/适配iOS-11相关解决方法/" title="适配iOS 11总结">https://gosuncnstudio.github.io/2018/01/04/适配iOS-11相关解决方法/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://gosuncnstudio.github.io/2018/01/04/适配iOS-11相关解决方法/　　作者: GosuncnStudio" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/01/04/Carthage-使用手册/">
+                    Carthage 使用手册
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Human-Interface-Guideline的适配建议"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Human-Interface-Guideline&#x7684;&#x9002;&#x914D;&#x5EFA;&#x8BAE;" class="headerlink" title="Human Interface Guideline&#x7684;&#x9002;&#x914D;&#x5EFA;&#x8BAE;"></a>Human Interface Guideline&#x7684;&#x9002;&#x914D;&#x5EFA;&#x8BAE;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#遵循Safe-Area-安全区域-的界定"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#&#x9075;&#x5FAA;Safe-Area-&#x5B89;&#x5168;&#x533A;&#x57DF;-&#x7684;&#x754C;&#x5B9A;" class="headerlink" title="&#x9075;&#x5FAA;Safe Area(&#x5B89;&#x5168;&#x533A;&#x57DF;)&#x7684;&#x754C;&#x5B9A;"></a>&#x9075;&#x5FAA;Safe Area(&#x5B89;&#x5168;&#x533A;&#x57DF;)&#x7684;&#x754C;&#x5B9A;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#状态栏"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#&#x72B6;&#x6001;&#x680F;" class="headerlink" title="&#x72B6;&#x6001;&#x680F;"></a>&#x72B6;&#x6001;&#x680F;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#圆弧展示角和传感器槽"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#x5706;&#x5F27;&#x5C55;&#x793A;&#x89D2;&#x548C;&#x4F20;&#x611F;&#x5668;&#x69FD;" class="headerlink" title="&#x5706;&#x5F27;&#x5C55;&#x793A;&#x89D2;&#x548C;&#x4F20;&#x611F;&#x5668;&#x69FD;"></a>&#x5706;&#x5F27;&#x5C55;&#x793A;&#x89D2;&#x548C;&#x4F20;&#x611F;&#x5668;&#x69FD;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主屏幕指示器"><span class="toc-number">1.4.</span> <span class="toc-text"><a href="#&#x4E3B;&#x5C4F;&#x5E55;&#x6307;&#x793A;&#x5668;" class="headerlink" title="&#x4E3B;&#x5C4F;&#x5E55;&#x6307;&#x793A;&#x5668;"></a>&#x4E3B;&#x5C4F;&#x5E55;&#x6307;&#x793A;&#x5668;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调整视频的缩放度"><span class="toc-number">1.5.</span> <span class="toc-text"><a href="#&#x8C03;&#x6574;&#x89C6;&#x9891;&#x7684;&#x7F29;&#x653E;&#x5EA6;" class="headerlink" title="&#x8C03;&#x6574;&#x89C6;&#x9891;&#x7684;&#x7F29;&#x653E;&#x5EA6;"></a>&#x8C03;&#x6574;&#x89C6;&#x9891;&#x7684;&#x7F29;&#x653E;&#x5EA6;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#各个机型尺寸变化"><span class="toc-number">1.6.</span> <span class="toc-text"><a href="#&#x5404;&#x4E2A;&#x673A;&#x578B;&#x5C3A;&#x5BF8;&#x53D8;&#x5316;" class="headerlink" title="&#x5404;&#x4E2A;&#x673A;&#x578B;&#x5C3A;&#x5BF8;&#x53D8;&#x5316;"></a>&#x5404;&#x4E2A;&#x673A;&#x578B;&#x5C3A;&#x5BF8;&#x53D8;&#x5316;</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消除iPhone-X展示界面的上下黑边"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x6D88;&#x9664;iPhone-X&#x5C55;&#x793A;&#x754C;&#x9762;&#x7684;&#x4E0A;&#x4E0B;&#x9ED1;&#x8FB9;" class="headerlink" title="&#x6D88;&#x9664;iPhone X&#x5C55;&#x793A;&#x754C;&#x9762;&#x7684;&#x4E0A;&#x4E0B;&#x9ED1;&#x8FB9;"></a>&#x6D88;&#x9664;iPhone X&#x5C55;&#x793A;&#x754C;&#x9762;&#x7684;&#x4E0A;&#x4E0B;&#x9ED1;&#x8FB9;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SearchBar适配"><span class="toc-number">3.</span> <span class="toc-text"><a href="#SearchBar&#x9002;&#x914D;" class="headerlink" title="SearchBar&#x9002;&#x914D;"></a>SearchBar&#x9002;&#x914D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ScrollView界面偏移20pt或者64pt"><span class="toc-number">4.</span> <span class="toc-text"><a href="#ScrollView&#x754C;&#x9762;&#x504F;&#x79FB;20pt&#x6216;&#x8005;64pt" class="headerlink" title="ScrollView&#x754C;&#x9762;&#x504F;&#x79FB;20pt&#x6216;&#x8005;64pt."></a>ScrollView&#x754C;&#x9762;&#x504F;&#x79FB;20pt&#x6216;&#x8005;64pt.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原因"><span class="toc-number">4.1.</span> <span class="toc-text"><a href="#&#x539F;&#x56E0;" class="headerlink" title="&#x539F;&#x56E0;"></a>&#x539F;&#x56E0;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#adjustContentInset属性的计算方式"><span class="toc-number">4.2.</span> <span class="toc-text"><a href="#adjustContentInset&#x5C5E;&#x6027;&#x7684;&#x8BA1;&#x7B97;&#x65B9;&#x5F0F;" class="headerlink" title="adjustContentInset&#x5C5E;&#x6027;&#x7684;&#x8BA1;&#x7B97;&#x65B9;&#x5F0F;"></a>adjustContentInset&#x5C5E;&#x6027;&#x7684;&#x8BA1;&#x7B97;&#x65B9;&#x5F0F;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方法"><span class="toc-number">4.3.</span> <span class="toc-text"><a href="#&#x89E3;&#x51B3;&#x65B9;&#x6CD5;" class="headerlink" title="&#x89E3;&#x51B3;&#x65B9;&#x6CD5;"></a>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UITableViewStyleGrouped造成的偏移"><span class="toc-number">5.</span> <span class="toc-text"><a href="#UITableViewStyleGrouped&#x9020;&#x6210;&#x7684;&#x504F;&#x79FB;" class="headerlink" title="UITableViewStyleGrouped&#x9020;&#x6210;&#x7684;&#x504F;&#x79FB;"></a>UITableViewStyleGrouped&#x9020;&#x6210;&#x7684;&#x504F;&#x79FB;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BackButton的图片设置"><span class="toc-number">6.</span> <span class="toc-text"><a href="#BackButton&#x7684;&#x56FE;&#x7247;&#x8BBE;&#x7F6E;" class="headerlink" title="BackButton&#x7684;&#x56FE;&#x7247;&#x8BBE;&#x7F6E;"></a>BackButton&#x7684;&#x56FE;&#x7247;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#去除BackTitle的方法"><span class="toc-number">7.</span> <span class="toc-text"><a href="#&#x53BB;&#x9664;BackTitle&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x53BB;&#x9664;BackTitle&#x7684;&#x65B9;&#x6CD5;"></a>&#x53BB;&#x9664;BackTitle&#x7684;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rightBarButtonItem设置"><span class="toc-number">8.</span> <span class="toc-text"><a href="#rightBarButtonItem&#x8BBE;&#x7F6E;" class="headerlink" title="rightBarButtonItem&#x8BBE;&#x7F6E;"></a>rightBarButtonItem&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流式布局的iPhone-X适配"><span class="toc-number">9.</span> <span class="toc-text"><a href="#&#x6D41;&#x5F0F;&#x5E03;&#x5C40;&#x7684;iPhone-X&#x9002;&#x914D;" class="headerlink" title="&#x6D41;&#x5F0F;&#x5E03;&#x5C40;&#x7684;iPhone X&#x9002;&#x914D;"></a>&#x6D41;&#x5F0F;&#x5E03;&#x5C40;&#x7684;iPhone X&#x9002;&#x914D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#适配到iOS8的布局设置"><span class="toc-number">10.</span> <span class="toc-text"><a href="#&#x9002;&#x914D;&#x5230;iOS8&#x7684;&#x5E03;&#x5C40;&#x8BBE;&#x7F6E;" class="headerlink" title="&#x9002;&#x914D;&#x5230;iOS8&#x7684;&#x5E03;&#x5C40;&#x8BBE;&#x7F6E;"></a>&#x9002;&#x914D;&#x5230;iOS8&#x7684;&#x5E03;&#x5C40;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#横屏时tableview的适配"><span class="toc-number">11.</span> <span class="toc-text"><a href="#&#x6A2A;&#x5C4F;&#x65F6;tableview&#x7684;&#x9002;&#x914D;" class="headerlink" title="&#x6A2A;&#x5C4F;&#x65F6;tableview&#x7684;&#x9002;&#x914D;"></a>&#x6A2A;&#x5C4F;&#x65F6;tableview&#x7684;&#x9002;&#x914D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐藏底部Indicator"><span class="toc-number">12.</span> <span class="toc-text"><a href="#&#x9690;&#x85CF;&#x5E95;&#x90E8;Indicator" class="headerlink" title="&#x9690;&#x85CF;&#x5E95;&#x90E8;Indicator"></a>&#x9690;&#x85CF;&#x5E95;&#x90E8;Indicator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发送原图功能"><span class="toc-number">13.</span> <span class="toc-text"><a href="#&#x53D1;&#x9001;&#x539F;&#x56FE;&#x529F;&#x80FD;" class="headerlink" title="&#x53D1;&#x9001;&#x539F;&#x56FE;&#x529F;&#x80FD;"></a>&#x53D1;&#x9001;&#x539F;&#x56FE;&#x529F;&#x80FD;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#权限处理"><span class="toc-number">14.</span> <span class="toc-text"><a href="#&#x6743;&#x9650;&#x5904;&#x7406;" class="headerlink" title="&#x6743;&#x9650;&#x5904;&#x7406;"></a>&#x6743;&#x9650;&#x5904;&#x7406;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#近场通讯NFC权限案例"><span class="toc-number">14.1.</span> <span class="toc-text"><a href="#&#x8FD1;&#x573A;&#x901A;&#x8BAF;NFC&#x6743;&#x9650;&#x6848;&#x4F8B;" class="headerlink" title="&#x8FD1;&#x573A;&#x901A;&#x8BAF;NFC&#x6743;&#x9650;&#x6848;&#x4F8B;"></a>&#x8FD1;&#x573A;&#x901A;&#x8BAF;NFC&#x6743;&#x9650;&#x6848;&#x4F8B;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ios11-地图定位权限设置"><span class="toc-number">14.2.</span> <span class="toc-text"><a href="#ios11-&#x5730;&#x56FE;&#x5B9A;&#x4F4D;&#x6743;&#x9650;&#x8BBE;&#x7F6E;" class="headerlink" title="ios11 &#x5730;&#x56FE;&#x5B9A;&#x4F4D;&#x6743;&#x9650;&#x8BBE;&#x7F6E;"></a>ios11 &#x5730;&#x56FE;&#x5B9A;&#x4F4D;&#x6743;&#x9650;&#x8BBE;&#x7F6E;</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"适配iOS 11总结　| 高新兴移动开发小组　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2018/01/04/适配iOS-11相关解决方法/" data-title="适配iOS 11总结" data-url="https://gosuncnstudio.github.io/2018/01/04/适配iOS-11相关解决方法/"></div>
+    <script>
+        var duoshuoQuery = {short_name:""};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/01/04/Carthage-使用手册/" title="下一篇: Carthage 使用手册">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/01/04/适配iOS-11相关解决方法/">适配iOS 11总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/04/Carthage-使用手册/">Carthage 使用手册</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/27/Android编译时注解/">Android编译时注解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/25/Android-statusBar-开发问题汇总/">Android statusBar 开发问题汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/18/Git常用命令简介/">Git常用命令简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/15/视频码流格式解析/">视频码流格式解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/07/破解摩拜成为私家车的有效方法/">破解摩拜成为私家车的有效方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/06/Android内存泄漏总结/">内存泄漏总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/hexo使用教程/">hexo使用教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/hexo样式/">hexo样式及md语法教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/04/GXXVideoPlayer配置/">GXXVideoPlayer配置</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                1997-2018 GosuncnStudio
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        $("a[target=_blank]").removeAttr("target");
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

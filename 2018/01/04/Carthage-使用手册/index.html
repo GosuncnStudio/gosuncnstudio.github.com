@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="高新兴移动开发小组">
 <meta property="og:description" content="iOS第三方框架管理高效快速的软件开发离不开一些成熟的第三方框架,我们需要一些方法把自己和别人写的代码组织起来，高效地利用，并以此为基础构建软件。这就涉及到使用和维护框架。当然我们可以简单的从github中找到需要的代码，download下来并手动集成到你的项目中。但这种做法费时费力，且难以维护。这个时候我们需要一套适用于iOS的第三方框架依赖管理器。 CocoaPodsCocoaPods 是一">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://gosuncnstudio.github.io/2018/01/04/img/Carthage-使用手册/header.png">
-<meta property="og:image" content="https://gosuncnstudio.github.io/2018/01/04/img/Carthage-使用手册/carthage-settings.gif">
-<meta property="og:image" content="https://gosuncnstudio.github.io/2018/01/04/img/Carthage-使用手册/newScript.png">
-<meta property="og:image" content="https://gosuncnstudio.github.io/2018/01/04/img/Carthage-使用手册/configScript.png">
-<meta property="og:image" content="https://gosuncnstudio.github.io/2018/01/04/img/Carthage-使用手册/settingProject.png">
-<meta property="og:image" content="https://gosuncnstudio.github.io/2018/01/04/img/Carthage-使用手册/manageSchemes.png">
-<meta property="og:image" content="https://gosuncnstudio.github.io/2018/01/04/img/Carthage-使用手册/shareSchemes.png">
-<meta property="og:updated_time" content="2018-01-04T02:40:58.000Z">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/Carthage-使用手册/header.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/Carthage-使用手册/carthage-settings.gif">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/Carthage-使用手册/newScript.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/Carthage-使用手册/configScript.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/Carthage-使用手册/settingProject.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/Carthage-使用手册/manageSchemes.png">
+<meta property="og:image" content="https://gosuncnstudio.github.io/img/Carthage-使用手册/shareSchemes.png">
+<meta property="og:updated_time" content="2018-01-08T05:56:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Carthage 使用手册">
 <meta name="twitter:description" content="iOS第三方框架管理高效快速的软件开发离不开一些成熟的第三方框架,我们需要一些方法把自己和别人写的代码组织起来，高效地利用，并以此为基础构建软件。这就涉及到使用和维护框架。当然我们可以简单的从github中找到需要的代码，download下来并手动集成到你的项目中。但这种做法费时费力，且难以维护。这个时候我们需要一套适用于iOS的第三方框架依赖管理器。 CocoaPodsCocoaPods 是一">
-<meta name="twitter:image" content="https://gosuncnstudio.github.io/2018/01/04/img/Carthage-使用手册/header.png">
+<meta name="twitter:image" content="https://gosuncnstudio.github.io/img/Carthage-使用手册/header.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -302,7 +302,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><img src="../img/Carthage-使用手册/header.png" alt="header.png"></p>
+        <p><img src="/img/Carthage-使用手册/header.png" alt="header.png"></p>
 <h2 id="iOS第三方框架管理"><a href="#iOS第三方框架管理" class="headerlink" title="iOS第三方框架管理"></a>iOS第三方框架管理</h2><p>高效快速的软件开发离不开一些成熟的第三方框架,我们需要一些方法把自己和别人写的代码组织起来，高效地利用，并以此为基础构建软件。这就涉及到使用和维护框架。当然我们可以简单的从<a href="https://github.com" target="_blank" rel="noopener">github</a>中找到需要的代码，download下来并手动集成到你的项目中。但这种做法费时费力，且难以维护。这个时候我们需要一套适用于iOS的第三方框架依赖管理器。</p>
 <h4 id="CocoaPods"><a href="#CocoaPods" class="headerlink" title="CocoaPods"></a>CocoaPods</h4><p><a href="http://cocoapods.org" target="_blank" rel="noopener">CocoaPods</a> 是一个已经有五年历史的ruby程序，用于帮助获取和管理依赖框架。CocoaPods 的主要原理是框架的提供者通过编写合适的 PodSpec 文件来提供框架的基本信息，包括仓库地址，需要编译的文件，依赖等。用户使用 Podfile 文件指定想要使用的框架，CocoaPods 会创建一个新的工程来管理这些框架和它们的依赖，并把所有这些框架编译到成一个<em>静态的</em>libPod.a。然后新建一个 workspace 包含你原来的项目和这个新的框架项目，最后在原来的项目中使用这个 libPods.a。<br><a id="more"></a><br>这是一种“侵入式”的集成方式，它会修改你的项目配置和结构。</p>
 <p>在实际使用过程中我们发现Cocoapods与SVN存在不兼容性，在使用SVN管理Cocoapods资源的时候需要忽略一些文件（Pods、Podfile.lock）；或者只提交Podfile文件，并在另一个工作环境中运行pod install进行配置。</p>
@@ -331,23 +331,23 @@
 <p><code>--platform iOS</code>会让Carthage编译的框架只支持iOS平台,如果你不声明的话,Carthage将会默认为你编译全平台的框架。</p>
 <p>执行完update命令，carthage会自动下载和编译所需的第三方框架，当命令执行完成，在你的项目文件夹中会创建一个名为Carthage的文件夹，在~/Carthage/Build/iOS中可以找到编译好的.framework框架。在~/Carthage/Checkouts中则可以找到框架的源码。</p>
 <h4 id="在项目中添加框架"><a href="#在项目中添加框架" class="headerlink" title="在项目中添加框架"></a>在项目中添加框架</h4><p>打开项目，点击project，选择target-&gt;General，将需要的framework文件拖到Linken Frameworks and Libraries中:</p>
-<p><img src="../img/Carthage-使用手册/carthage-settings.gif" alt="carthage-settings.gif"></p>
+<p><img src="/img/Carthage-使用手册/carthage-settings.gif" alt="carthage-settings.gif"></p>
 <p>在target-&gt;Build Phases设置项中点击 ==+== 按钮并选择 ==New Run Script Pahse== :</p>
-<p><img src="../img/Carthage-使用手册/newScript.png" alt="newScript.png"></p>
+<p><img src="/img/Carthage-使用手册/newScript.png" alt="newScript.png"></p>
 <p>在run script中加入如下命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/Carthage copy-frameworks</span><br></pre></td></tr></table></figure></p>
 <p>同时在下方的==Input Files==中为每个framework添加地址:</p>
-<p><img src="../img/Carthage-使用手册/configScript.png" alt="configScript.png"></p>
+<p><img src="/img/Carthage-使用手册/configScript.png" alt="configScript.png"></p>
 <p>这些是为了解决<a href="http://www.openradar.me/radar?id=6409498411401216" target="_blank" rel="noopener">App Store submission bug</a>的方法。</p>
 <p>做完这些，你的项目就已经配置好了，现在你已经可以在项目中使用 ==#import &lt;Framework/header.h&gt;== 来调用框架提供的方法了。</p>
 <h4 id="更新框架"><a href="#更新框架" class="headerlink" title="更新框架"></a>更新框架</h4><p>如果需要更新框架版本或者添加新的框架,只需打开修改cartfile，保存并重新运行<code>carthage update --platform iOS</code>，carthage将会重新checkout 并编译。</p>
 <h2 id="创建框架并支持到Carthage"><a href="#创建框架并支持到Carthage" class="headerlink" title="创建框架并支持到Carthage"></a>创建框架并支持到Carthage</h2><p>由于carthage是iOS8之后才出现的依赖工具，现阶段支持的第三方框架有限，同时，为了方便开发，我们内部也封装了一些常用框架，这个时候，我们可以自己将需要的框架配置支持carthage。</p>
 <h4 id="配置Xcode-Project"><a href="#配置Xcode-Project" class="headerlink" title="配置Xcode Project"></a>配置Xcode Project</h4><p>以iOS时间工具库<a href="https://github.com/MatthewYork/DateTools" target="_blank" rel="noopener">DateTools</a>为例，该库提供了丰富的时间日期操作方法，可以大大减少开发时时间计算及时间格式转换等功能代码量，但该库并不支持Carthage。现在我们将其进行支持carthage配置。<br>首先，将DateTools仓库Fork到<a href="https://github.com/GosuncnMobile" target="_blank" rel="noopener">部门github账号</a>下，clone源码到本地。</p>
 <p>打开Xcode，选择File-&gt;New-&gt;Project(快捷键==shift+command+N==),选择iOS-&gt;Farmework &amp; Library 选项下的==Cocoa Touch Library==,点击==Next==按钮,进入Product option界面,填写基本的工程信息。</p>
-<p><img src="../img/Carthage-使用手册/settingProject.png" alt="settingProject.png"></p>
+<p><img src="/img/Carthage-使用手册/settingProject.png" alt="settingProject.png"></p>
 <p>工程创建完毕后，点开Xcode左上角==scheme==选项并选择==Manage Schemes==</p>
-<p><img src="../img/Carthage-使用手册/manageSchemes.png" alt="manageSchemes.png"></p>
+<p><img src="/img/Carthage-使用手册/manageSchemes.png" alt="manageSchemes.png"></p>
 <p>将需要构建的==scheme==勾选==Shared==</p>
-<p><img src="../img/Carthage-使用手册/shareSchemes.png" alt="shareSchemes.png"></p>
+<p><img src="/img/Carthage-使用手册/shareSchemes.png" alt="shareSchemes.png"></p>
 <p>这样Carthage就可以发现该工程。</p>
 <h4 id="尝试编译工程"><a href="#尝试编译工程" class="headerlink" title="尝试编译工程"></a>尝试编译工程</h4><p>在进行完上述操作后，你可以尝试将工程编译成framework来测试一下框架能否正确运行。</p>
 <p>打开终端，进入到项目文件夹，执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$carthage build --no-skip-current</span><br></pre></td></tr></table></figure></p>
@@ -378,7 +378,7 @@
         <p><span>本文标题:</span><a href="/2018/01/04/Carthage-使用手册/">Carthage 使用手册</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">GosuncnStudio</a></p>
         <p><span>发布时间:</span>2018-01-04, 10:24:48</p>
-        <p><span>最后更新:</span>2018-01-04, 10:40:58</p>
+        <p><span>最后更新:</span>2018-01-08, 13:56:11</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/01/04/Carthage-使用手册/" title="Carthage 使用手册">https://gosuncnstudio.github.io/2018/01/04/Carthage-使用手册/</a>
             <span class="copy-path" data-clipboard-text="原文: https://gosuncnstudio.github.io/2018/01/04/Carthage-使用手册/　　作者: GosuncnStudio" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

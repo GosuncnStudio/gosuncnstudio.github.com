@@ -367,7 +367,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p><img src="../img/Carthage-使用手册/header.png" alt="header.png"></p>
+              <p><img src="/img/Carthage-使用手册/header.png" alt="header.png"></p>
 <h2 id="iOS第三方框架管理"><a href="#iOS第三方框架管理" class="headerlink" title="iOS第三方框架管理"></a>iOS第三方框架管理</h2><p>高效快速的软件开发离不开一些成熟的第三方框架,我们需要一些方法把自己和别人写的代码组织起来，高效地利用，并以此为基础构建软件。这就涉及到使用和维护框架。当然我们可以简单的从<a href="https://github.com" target="_blank" rel="noopener">github</a>中找到需要的代码，download下来并手动集成到你的项目中。但这种做法费时费力，且难以维护。这个时候我们需要一套适用于iOS的第三方框架依赖管理器。</p>
 <h4 id="CocoaPods"><a href="#CocoaPods" class="headerlink" title="CocoaPods"></a>CocoaPods</h4><p><a href="http://cocoapods.org" target="_blank" rel="noopener">CocoaPods</a> 是一个已经有五年历史的ruby程序，用于帮助获取和管理依赖框架。CocoaPods 的主要原理是框架的提供者通过编写合适的 PodSpec 文件来提供框架的基本信息，包括仓库地址，需要编译的文件，依赖等。用户使用 Podfile 文件指定想要使用的框架，CocoaPods 会创建一个新的工程来管理这些框架和它们的依赖，并把所有这些框架编译到成一个<em>静态的</em>libPod.a。然后新建一个 workspace 包含你原来的项目和这个新的框架项目，最后在原来的项目中使用这个 libPods.a。<br>
           

@@ -138,10 +138,10 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
                     </ul>
@@ -248,7 +248,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap">
   
@@ -260,7 +260,7 @@
 </a>
 
  
-    <a href="/2018/01/16/svn与Cocoapods联用方法/#comments" title="查看评论">
+    <a href="/2018/01/16/svn与Cocoapods联用方法/#comments" title="Comments">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -290,26 +290,11 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>  公司的项目都是寄托在SVN进行版本控制,目前是通过自己建立一个静态库来进行第三方库的管理.</p>
+              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>  公司的项目都是寄托在SVN进行版本控制,目前是通过自己建立一个静态库来进行第三方库的管理.</p>
 <ul>
 <li>优点:多个项目可以共用同一个静态库,代码只有一份.可以随时更改里面相关的代码,通过SVN同步.</li>
 <li><p>缺点:静态库无法包含资源文件,静态库编译的时候需要把全部都编译,时间较长.需要自己维护静态库里面各种第三方库的代码,很难自动的升级或者更新代码.</p>
-<p>因此迫切需要一个类似安卓的Gradle工具来进行第三方库的管理.iOS最常用的包管理工具是CocoaPods.</p>
-<blockquote>
-<p>CocoaPods是一个为了Swift和Objective-C而诞生的第三方库管理工具.它已经拥有超过4万1个第三方库以及被超过三百万应用所使用.CocoaPods能够帮助你优雅简单地扩展你的项目.</p>
-</blockquote>
-<p>但由于SVN并不会自动忽略CocoaPods所下载的依赖库,而是会把目录下的依赖库全部上传到SVN.既浪费了SVN的储存空间,又没有达到使用CocoaPods的目的.因此需要找到一个方法来设置SVN的忽略(ignore),使只上传<code>podfile</code>这个描述第三方库依赖的文件.</p>
-</li>
-</ul>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>1.將SVN的项目文件夹check out到本地目录</p>
-<p><img src="/img/svn与Cocoapods联用方法/svn_co.png" alt="svn_co.png"></p>
-<p>2.若co的文件夹中,还未建立项目,新建一个项目.并在新建项目目录下<code>pod init</code>,建立<code>podfile</code>文件.<br>3.<code>vim podfile</code>编辑podfile文件,加入所需要依赖的第三方库.</p>
-<p><img src="/img/svn与Cocoapods联用方法/podfile.png" alt="svn_co.png"><br>4.<code>pod install</code>安装依赖.<br>5.<code>svn add podfile</code>将podfile配置文件加入版本控制<br>6.<code>svn propset svn:ignore Pods .</code>设置忽略Pods文件夹,注意pods后面还有一个<code>.</code></p>
-<p><img src="/img/svn与Cocoapods联用方法/svn_ignore.png" alt="svn_ignore.png"><br><code>假如Pods文件夹已经加入了版本控制</code>,可以通过下列方法,从svn上移除Pods文件夹,并保留本地目录下的Pods文件夹.<br><code>svn rm --keep-local Pods</code><br>7.<code>svn commit -m&quot;XXXXXXXXXXXX&quot;</code>上传文件到svn服务器.</p>
-<p><img src="/img/svn与Cocoapods联用方法/commit_result.png" alt="commit_result.png"><br><img src="/img/svn与Cocoapods联用方法/local_result.png" alt="commit_result.png"><br>对比可以看到,pods文件夹已经被成功忽略.</p>
-<hr>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考:"></a>参考:</h3><p>1.<a href="https://cocoapods.org/" target="_blank" rel="noopener">CocoaPods</a><br>2.<a href="https://stackoverflow.com/questions/116074/how-do-i-ignore-a-directory-with-svn" target="_blank" rel="noopener">怎么使用SVN ignore</a></p>
-
+          
       
     </div>
     
@@ -326,6 +311,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CocoaPods/">CocoaPods</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVN/">SVN</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2018/01/16/svn与Cocoapods联用方法/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -351,7 +340,7 @@
 </a>
 
  
-    <a href="/2018/01/04/适配iOS-11总结/#comments" title="查看评论">
+    <a href="/2018/01/04/适配iOS-11总结/#comments" title="Comments">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -428,7 +417,7 @@
 </a>
 
  
-    <a href="/2018/01/04/Carthage-使用手册/#comments" title="查看评论">
+    <a href="/2018/01/04/Carthage-使用手册/#comments" title="Comments">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -507,7 +496,7 @@
 </a>
 
  
-    <a href="/2017/12/27/Android编译时注解/#comments" title="查看评论">
+    <a href="/2017/12/27/Android编译时注解/#comments" title="Comments">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -588,7 +577,7 @@
 </a>
 
  
-    <a href="/2017/12/25/Android-statusBar-开发问题汇总/#comments" title="查看评论">
+    <a href="/2017/12/25/Android-statusBar-开发问题汇总/#comments" title="Comments">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -667,7 +656,7 @@
 </a>
 
  
-    <a href="/2017/12/18/Git常用命令简介/#comments" title="查看评论">
+    <a href="/2017/12/18/Git常用命令简介/#comments" title="Comments">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -752,7 +741,7 @@
 </a>
 
  
-    <a href="/2017/12/15/视频码流格式解析/#comments" title="查看评论">
+    <a href="/2017/12/15/视频码流格式解析/#comments" title="Comments">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -830,7 +819,7 @@
 </a>
 
  
-    <a href="/2017/12/07/破解摩拜成为私家车的有效方法/#comments" title="查看评论">
+    <a href="/2017/12/07/破解摩拜成为私家车的有效方法/#comments" title="Comments">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -917,7 +906,7 @@
 </a>
 
  
-    <a href="/2017/12/06/Android内存泄漏总结/#comments" title="查看评论">
+    <a href="/2017/12/06/Android内存泄漏总结/#comments" title="Comments">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -995,7 +984,7 @@
 </a>
 
  
-    <a href="/2017/12/05/hexo使用教程/#comments" title="查看评论">
+    <a href="/2017/12/05/hexo使用教程/#comments" title="Comments">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -1079,14 +1068,14 @@
                 1997-2018 GosuncnStudio
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -1095,7 +1084,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -1176,9 +1165,9 @@ MathJax.Hub.Queue(function() {
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window

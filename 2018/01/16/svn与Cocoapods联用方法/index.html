@@ -15,23 +15,23 @@
 
 
 
-<meta name="description" content="前言  公司的项目都是寄托在SVN进行版本控制,目前是通过自己建立一个静态库来进行第三方库的管理.  优点:多个项目可以共用同一个静态库,代码只有一份.可以随时更改里面相关的代码,通过SVN同步. 缺点:静态库无法包含资源文件,静态库编译的时候需要把全部都编译,时间较长.需要自己维护静态库里面各种第三方库的代码,很难自动的升级或者更新代码. 因此迫切需要一个类似安卓的Gradle工具来进行第三方库">
+<meta name="description" content="前言  公司的项目都是寄托在SVN进行版本控制,目前是通过自己建立一个静态库来进行第三方库的管理.  优点:多个项目可以共用同一个静态库,代码只有一份.可以随时更改里面相关的代码,通过SVN同步. 缺点:静态库无法包含资源文件,静态库编译的时候需要把全部都编译,时间较长.需要自己维护静态库里面各种第三方库的代码,很难自动的升级或者更新代码.">
 <meta name="keywords" content="SVN,CocoaPods">
 <meta property="og:type" content="article">
 <meta property="og:title" content="svn与Cocoapods联用方法">
 <meta property="og:url" content="https://gosuncnstudio.github.io/2018/01/16/svn与Cocoapods联用方法/index.html">
 <meta property="og:site_name" content="高新兴移动开发小组">
-<meta property="og:description" content="前言  公司的项目都是寄托在SVN进行版本控制,目前是通过自己建立一个静态库来进行第三方库的管理.  优点:多个项目可以共用同一个静态库,代码只有一份.可以随时更改里面相关的代码,通过SVN同步. 缺点:静态库无法包含资源文件,静态库编译的时候需要把全部都编译,时间较长.需要自己维护静态库里面各种第三方库的代码,很难自动的升级或者更新代码. 因此迫切需要一个类似安卓的Gradle工具来进行第三方库">
+<meta property="og:description" content="前言  公司的项目都是寄托在SVN进行版本控制,目前是通过自己建立一个静态库来进行第三方库的管理.  优点:多个项目可以共用同一个静态库,代码只有一份.可以随时更改里面相关的代码,通过SVN同步. 缺点:静态库无法包含资源文件,静态库编译的时候需要把全部都编译,时间较长.需要自己维护静态库里面各种第三方库的代码,很难自动的升级或者更新代码.">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gosuncnstudio.github.io/img/svn与Cocoapods联用方法/svn_co.png">
 <meta property="og:image" content="https://gosuncnstudio.github.io/img/svn与Cocoapods联用方法/podfile.png">
 <meta property="og:image" content="https://gosuncnstudio.github.io/img/svn与Cocoapods联用方法/svn_ignore.png">
 <meta property="og:image" content="https://gosuncnstudio.github.io/img/svn与Cocoapods联用方法/commit_result.png">
 <meta property="og:image" content="https://gosuncnstudio.github.io/img/svn与Cocoapods联用方法/local_result.png">
-<meta property="og:updated_time" content="2018-01-17T06:33:02.000Z">
+<meta property="og:updated_time" content="2018-01-17T06:34:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="svn与Cocoapods联用方法">
-<meta name="twitter:description" content="前言  公司的项目都是寄托在SVN进行版本控制,目前是通过自己建立一个静态库来进行第三方库的管理.  优点:多个项目可以共用同一个静态库,代码只有一份.可以随时更改里面相关的代码,通过SVN同步. 缺点:静态库无法包含资源文件,静态库编译的时候需要把全部都编译,时间较长.需要自己维护静态库里面各种第三方库的代码,很难自动的升级或者更新代码. 因此迫切需要一个类似安卓的Gradle工具来进行第三方库">
+<meta name="twitter:description" content="前言  公司的项目都是寄托在SVN进行版本控制,目前是通过自己建立一个静态库来进行第三方库的管理.  优点:多个项目可以共用同一个静态库,代码只有一份.可以随时更改里面相关的代码,通过SVN同步. 缺点:静态库无法包含资源文件,静态库编译的时候需要把全部都编译,时间较长.需要自己维护静态库里面各种第三方库的代码,很难自动的升级或者更新代码.">
 <meta name="twitter:image" content="https://gosuncnstudio.github.io/img/svn与Cocoapods联用方法/svn_co.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -144,10 +144,10 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
                     </ul>
@@ -254,7 +254,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap"><article id="post-svn与Cocoapods联用方法" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -304,6 +304,7 @@
 <ul>
 <li>优点:多个项目可以共用同一个静态库,代码只有一份.可以随时更改里面相关的代码,通过SVN同步.</li>
 <li><p>缺点:静态库无法包含资源文件,静态库编译的时候需要把全部都编译,时间较长.需要自己维护静态库里面各种第三方库的代码,很难自动的升级或者更新代码.</p>
+<a id="more"></a>
 <p>因此迫切需要一个类似安卓的Gradle工具来进行第三方库的管理.iOS最常用的包管理工具是CocoaPods.</p>
 <blockquote>
 <p>CocoaPods是一个为了Swift和Objective-C而诞生的第三方库管理工具.它已经拥有超过4万1个第三方库以及被超过三百万应用所使用.CocoaPods能够帮助你优雅简单地扩展你的项目.</p>
@@ -327,17 +328,17 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/01/16/svn与Cocoapods联用方法/">svn与Cocoapods联用方法</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">GosuncnStudio</a></p>
-        <p><span>发布时间:</span>2018-01-16, 16:39:38</p>
-        <p><span>最后更新:</span>2018-01-17, 14:33:02</p>
+        <p><span>Title:</span><a href="/2018/01/16/svn与Cocoapods联用方法/">svn与Cocoapods联用方法</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">GosuncnStudio</a></p>
+        <p><span>Created:</span>2018-01-16, 16:39:38</p>
+        <p><span>Updated:</span>2018-01-17, 14:34:10</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/01/16/svn与Cocoapods联用方法/" title="svn与Cocoapods联用方法">https://gosuncnstudio.github.io/2018/01/16/svn与Cocoapods联用方法/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://gosuncnstudio.github.io/2018/01/16/svn与Cocoapods联用方法/　　作者: GosuncnStudio" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2018/01/16/svn与Cocoapods联用方法/" title="svn与Cocoapods联用方法">https://gosuncnstudio.github.io/2018/01/16/svn与Cocoapods联用方法/</a>
+            <span class="copy-path" data-clipboard-text="From https://gosuncnstudio.github.io/2018/01/16/svn与Cocoapods联用方法/　　By GosuncnStudio" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
         </p>
     </div>
 
@@ -358,7 +359,7 @@
 </article>
 
     <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Contents</strong>
         
             <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5B9E;&#x73B0;" class="headerlink" title="&#x5B9E;&#x73B0;"></a>&#x5B9E;&#x73B0;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x53C2;&#x8003;" class="headerlink" title="&#x53C2;&#x8003;:"></a>&#x53C2;&#x8003;:</span></a></li></ol>
         
@@ -374,10 +375,10 @@
         }
     </style>
 
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
 
     <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
     </script>
 
 
@@ -435,13 +436,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/01/04/适配iOS-11总结/" title="下一篇: 适配iOS 11总结">
+            <a href="/2018/01/04/适配iOS-11总结/" title="Next: 适配iOS 11总结">
                 <i class="fa fa-angle-right"></i>
             </a>
         
@@ -464,14 +465,14 @@
                 1997-2018 GosuncnStudio
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -480,7 +481,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -536,9 +537,9 @@ MathJax.Hub.Queue(function() {
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window

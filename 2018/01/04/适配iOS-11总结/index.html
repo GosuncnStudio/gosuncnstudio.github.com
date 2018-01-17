@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/tableViewLandError.png">
 <meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/tableViewLandDetail.png">
 <meta property="og:image" content="https://gosuncnstudio.github.io/img/适配iOS-11相关解决方法/ios11tableViewLandRight.jpeg">
-<meta property="og:updated_time" content="2018-01-08T05:46:07.000Z">
+<meta property="og:updated_time" content="2018-01-16T08:35:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="适配iOS 11总结">
 <meta name="twitter:description" content="Human Interface Guideline的适配建议遵循Safe Area(安全区域)的界定您的布局应在填满全屏超视网膜显示屏的同时，保证内容和控件正确显示，且便于点按。遵守安全区域的界定，以确保您的 app 与 iPhone X 新的屏幕比例合作无间。iOS 11 废弃了 iOS 7 之后出现的 topLayoutGuide/bottomLayoutGuide，取而代之的是safeLay">
@@ -207,7 +207,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/statusBar/">statusBar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄露/">内存泄露</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/注解/">注解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程切换/">线程切换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/视频码流/">视频码流</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配/">适配</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/statusBar/">statusBar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄露/">内存泄露</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/注解/">注解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程切换/">线程切换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/视频码流/">视频码流</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配/">适配</a></li></ul>
                     </div>
                 </section>
                 
@@ -320,7 +320,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="Human-Interface-Guideline的适配建议"><a href="#Human-Interface-Guideline的适配建议" class="headerlink" title="Human Interface Guideline的适配建议"></a>Human Interface Guideline的适配建议</h3><h4 id="遵循Safe-Area-安全区域-的界定"><a href="#遵循Safe-Area-安全区域-的界定" class="headerlink" title="遵循Safe Area(安全区域)的界定"></a>遵循Safe Area(安全区域)的界定</h4><p>您的布局应在填满全屏超视网膜显示屏的同时，保证内容和控件正确显示，且便于点按。遵守安全区域的界定，以确保您的 app 与 iPhone X 新的屏幕比例合作无间。<br><img src="/img/适配iOS-11相关解决方法/safeArea.jpeg" alt="safeArea.jpeg"><br>iOS 11 废弃了 iOS 7 之后出现的 topLayoutGuide/bottomLayoutGuide，取而代之的是safeLayoutGuide 概念。我们的UI元素都应该布局在这些区域之内，避免被各种 bar（NavgationBar、ToolBar、TabBar、StatusBar）遮挡。<br><a id="more"></a><br><img src="/img/适配iOS-11相关解决方法/safeArea1.jpeg" alt="safeArea1.jpeg"><br><img src="/img/适配iOS-11相关解决方法/safeArea2.jpeg" alt="safeArea2.jpeg"><br>如果我们用了 AutoLayout，并且开启了 safeAreaLayoutGuide，布局会自动加上这些 safeLayoutGuide，你的视图不会超出这部分 SafeArea。如图所示，如果你需要增加 Guide 的区域，那幺可以设置 self.additionalSafeAreaInsets 来增加区域。<br>默认的safeAreaLayoutGuide:<br><img src="/img/适配iOS-11相关解决方法/safeAreaLayoutGuideDefault.jpeg" alt="safeAreaLayoutGuideDefault.jpeg"><br>self.additionalSafeAreaInsets = UIEdgeInsetsMake(64, 0, 0, 0);的情况下:</p>
+        <h3 id="Human-Interface-Guideline的适配建议"><a href="#Human-Interface-Guideline的适配建议" class="headerlink" title="Human Interface Guideline的适配建议"></a>Human Interface Guideline的适配建议</h3><h4 id="遵循Safe-Area-安全区域-的界定"><a href="#遵循Safe-Area-安全区域-的界定" class="headerlink" title="遵循Safe Area(安全区域)的界定"></a>遵循Safe Area(安全区域)的界定</h4><p>您的布局应在填满全屏超视网膜显示屏的同时，保证内容和控件正确显示，且便于点按。遵守安全区域的界定，以确保您的 app 与 iPhone X 新的屏幕比例合作无间。<br><img src="/img/适配iOS-11相关解决方法/safeArea.jpeg" alt="safeArea.jpeg"><br>iOS 11 废弃了 iOS 7 之后出现的 topLayoutGuide/bottomLayoutGuide，取而代之的是safeLayoutGuide 概念。我们的UI元素都应该布局在这些区域之内，避免被各种 bar（NavgationBar、ToolBar、TabBar、StatusBar）遮挡。<br><a id="more"></a><br><img src="/img/适配iOS-11相关解决方法/safeArea1.jpeg" alt="safeArea1.jpeg"><br><img src="/img/适配iOS-11相关解决方法/safeArea2.jpeg" alt="safeArea2.jpeg"><br>如果我们用了 AutoLayout，并且开启了 safeAreaLayoutGuide，布局会自动加上这些 safeLayoutGuide，你的视图不会超出这部分 SafeArea。如图所示，如果你需要增加 Guide 的区域，那幺可以设置 UIViewController.additionalSafeAreaInsets 来增加区域。<br>默认的safeAreaLayoutGuide:<br><img src="/img/适配iOS-11相关解决方法/safeAreaLayoutGuideDefault.jpeg" alt="safeAreaLayoutGuideDefault.jpeg"><br>UIViewController.additionalSafeAreaInsets = UIEdgeInsetsMake(64, 0, 0, 0);的情况下:</p>
 <p><img src="/img/适配iOS-11相关解决方法/safeAreaLayoutGuideAddition.jpeg" alt="safeAreaLayoutGuideAddition.jpeg"></p>
 <h4 id="状态栏"><a href="#状态栏" class="headerlink" title="状态栏"></a>状态栏</h4><p>遵守安全区域的界定，在状态栏下面留出适当的空间。避免为状态栏高度预设值，这可能会导致您的内容被状态栏遮挡或形成错位。不可写死StatusBar的高度,iPhone X是44pt,其余为20pt.”如果你的 App 是隐藏 StatusBar 的，建议重新考虑。iPhone X 为用户在垂直空间上提供了更多展示余地，且状态栏中也包含了用户需要知道的信息，除非能通过隐藏状态栏带给用户额外的价值，否则苹果建议大家将状态栏还给用户。”<br>另外还有一点，用户在使用 iPhone X 打电话的时候，StatusBar 的高度也不会发生变化了。<br><img src="/img/适配iOS-11相关解决方法/statusBar.png" alt="statusBar.png"></p>
 <h4 id="圆弧展示角和传感器槽"><a href="#圆弧展示角和传感器槽" class="headerlink" title="圆弧展示角和传感器槽"></a>圆弧展示角和传感器槽</h4><p>您的 app 的内容元素和控制按键应避开屏幕角落和传感器槽，让其在填满屏幕的同时不被角落切割。<br><img src="/img/适配iOS-11相关解决方法/BarConrner.png" alt="BarConrner.png"></p>
@@ -498,7 +498,7 @@
         <p><span>本文标题:</span><a href="/2018/01/04/适配iOS-11总结/">适配iOS 11总结</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">GosuncnStudio</a></p>
         <p><span>发布时间:</span>2018-01-04, 13:59:01</p>
-        <p><span>最后更新:</span>2018-01-08, 13:46:07</p>
+        <p><span>最后更新:</span>2018-01-16, 16:35:41</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/01/04/适配iOS-11总结/" title="适配iOS 11总结">https://gosuncnstudio.github.io/2018/01/04/适配iOS-11总结/</a>
             <span class="copy-path" data-clipboard-text="原文: https://gosuncnstudio.github.io/2018/01/04/适配iOS-11总结/　　作者: GosuncnStudio" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -512,6 +512,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/01/16/svn与Cocoapods联用方法/">
+                    svn与Cocoapods联用方法
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -603,7 +609,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2018/01/16/svn与Cocoapods联用方法/" title="上一篇: svn与Cocoapods联用方法">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -615,7 +623,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/01/04/适配iOS-11总结/">适配iOS 11总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/04/Carthage-使用手册/">Carthage 使用手册</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/27/Android编译时注解/">Android编译时注解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/25/Android-statusBar-开发问题汇总/">Android statusBar 开发问题汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/18/Git常用命令简介/">Git常用命令简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/15/视频码流格式解析/">视频码流格式解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/07/破解摩拜成为私家车的有效方法/">破解摩拜成为私家车的有效方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/06/Android内存泄漏总结/">内存泄漏总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/hexo使用教程/">hexo使用教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/hexo样式/">hexo样式及md语法教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/04/GXXVideoPlayer配置/">GXXVideoPlayer配置</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/01/16/svn与Cocoapods联用方法/">svn与Cocoapods联用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/04/适配iOS-11总结/">适配iOS 11总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/04/Carthage-使用手册/">Carthage 使用手册</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/27/Android编译时注解/">Android编译时注解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/25/Android-statusBar-开发问题汇总/">Android statusBar 开发问题汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/18/Git常用命令简介/">Git常用命令简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/15/视频码流格式解析/">视频码流格式解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/07/破解摩拜成为私家车的有效方法/">破解摩拜成为私家车的有效方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/06/Android内存泄漏总结/">内存泄漏总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/hexo使用教程/">hexo使用教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/hexo样式/">hexo样式及md语法教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/04/GXXVideoPlayer配置/">GXXVideoPlayer配置</a></li></ul>
 
 
 

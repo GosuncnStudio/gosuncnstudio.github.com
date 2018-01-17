@@ -302,11 +302,11 @@
 </li>
 </ul>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>1.將SVN的项目文件夹check out到本地目录</p>
-<p><img src="../img/svn与Cocoapods联用方法/svn_co.png" alt="svn_co.png"></p>
+<p><img src="/img/svn与Cocoapods联用方法/svn_co.png" alt="svn_co.png"></p>
 <p>2.若co的文件夹中,还未建立项目,新建一个项目.并在新建项目目录下<code>pod init</code>,建立<code>podfile</code>文件.<br>3.<code>vim podfile</code>编辑podfile文件,加入所需要依赖的第三方库.</p>
-<p><img src="../img/svn与Cocoapods联用方法/podfile.png" alt="svn_co.png"><br>4.<code>pod install</code>安装依赖.<br>5.<code>svn add podfile</code>将podfile配置文件加入版本控制<br>6.<code>svn propset svn:ignore Pods .</code>设置忽略Pods文件夹,注意pods后面还有一个<code>.</code></p>
-<p><img src="../img/svn与Cocoapods联用方法/svn_ignore.png" alt="svn_ignore.png"><br><code>假如Pods文件夹已经加入了版本控制</code>,可以通过下列方法,从svn上移除Pods文件夹,并保留本地目录下的Pods文件夹.<br><code>svn rm --keep-local Pods</code><br>7.<code>svn commit -m&quot;XXXXXXXXXXXX&quot;</code>上传文件到svn服务器.</p>
-<p><img src="../img/svn与Cocoapods联用方法/commit_result.png" alt="commit_result.png"><br><img src="../img/svn与Cocoapods联用方法/local_result.png" alt="commit_result.png"><br>对比可以看到,pods文件夹已经被成功忽略.</p>
+<p><img src="/img/svn与Cocoapods联用方法/podfile.png" alt="svn_co.png"><br>4.<code>pod install</code>安装依赖.<br>5.<code>svn add podfile</code>将podfile配置文件加入版本控制<br>6.<code>svn propset svn:ignore Pods .</code>设置忽略Pods文件夹,注意pods后面还有一个<code>.</code></p>
+<p><img src="/img/svn与Cocoapods联用方法/svn_ignore.png" alt="svn_ignore.png"><br><code>假如Pods文件夹已经加入了版本控制</code>,可以通过下列方法,从svn上移除Pods文件夹,并保留本地目录下的Pods文件夹.<br><code>svn rm --keep-local Pods</code><br>7.<code>svn commit -m&quot;XXXXXXXXXXXX&quot;</code>上传文件到svn服务器.</p>
+<p><img src="/img/svn与Cocoapods联用方法/commit_result.png" alt="commit_result.png"><br><img src="/img/svn与Cocoapods联用方法/local_result.png" alt="commit_result.png"><br>对比可以看到,pods文件夹已经被成功忽略.</p>
 <hr>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考:"></a>参考:</h3><p>1.<a href="https://cocoapods.org/" target="_blank" rel="noopener">CocoaPods</a><br>2.<a href="https://stackoverflow.com/questions/116074/how-do-i-ignore-a-directory-with-svn" target="_blank" rel="noopener">怎么使用SVN ignore</a></p>
 
